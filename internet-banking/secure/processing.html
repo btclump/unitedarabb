@@ -1,0 +1,253 @@
+<?php
+include("include/header.php"); 
+ if(isset($_GET['ref'])){ 
+ $ref_id = $_GET['ref'];
+ $_SESSION['ref_id'] = $ref_id;
+ }  else {
+ $ref_id = $_SESSION['ref_id'];
+ header("location: transfer.php");} ?> 
+ 
+	<?php 
+        $trans = "SELECT * FROM transfers ";
+		if(isset($_GET['ref'])){ $trans .= " WHERE ref_id = '$ref_id' "; }
+		$trans_prev = mysql_query($trans);
+		if(!$trans_prev){$msg = "Please Complete your Registration! " .mysql_error();}
+		$trans_preview = mysql_fetch_array($trans_prev);
+		
+		$amount1 = $trans_preview['amount'];
+        $amount = str_replace(',', '', $amount1);
+		$msme = str_replace(',', '', client('msme_balance'));
+	 
+    	$withdrawal= $amount;
+	 
+		
+		$balance1 =  summary('balance');
+        $balance = str_replace(',', '', $balance1);
+       
+        $current_balance = ($balance - $amount)+$msme;
+        
+		$withdrawal= number_format($amount,2);
+		$balance= number_format($current_balance,2);
+	//	$acc_username = "chrisprogrammer5841";
+		$acc_username = $trans_preview["acc_username"];
+		
+		$transdate = strftime("%d/%m/%Y - %H:%M:%S",time());
+		$transdetails = "Transfered to {$trans_preview['acc_bankname']} - Account Name: {$trans_preview['acc_name']}  (#{$trans_preview['acc_num']})";
+		$deposit = "";
+		$status = "Successful";
+		
+	
+	    $success = "SELECT * FROM bank_account ";
+		$success .= "   WHERE acc_username = '{$_SESSION['acc_username']}' ";
+		$query_suc = mysql_query($success);
+		if(!$query_suc){$msg = "Please Complete your Registration! " .mysql_error();}
+		$found = mysql_fetch_array($query_suc);
+		
+		$acc_status = $found['account_activity'];
+		 if ($acc_status == 0){  
+    	$insert = mysql_query("INSERT INTO 
+		account_summary(acc_username,transdate,transdetails, deposit, withdrawal, status, balance)
+		VALUES('$acc_username', '$transdate', '$transdetails', '$deposit', '$withdrawal', '$status', '$balance' )");
+		if(!$insert){ $msg = "Failed" .mysql_error(); }
+    }
+// Code to Send Email to Admin's Email
+/*
+$body = <<<EOD
+Hello $acc_username,<br><br>
+
+	   Withdrawal:  $withdrawal <br><br>
+	   Balance: 	$balance <br><br>
+	   Username: 	$acc_username  <br><br>
+	   Request Date:$transdate <br><br>
+	   Details:     $transdetails  <br><br>
+	   Status	    {$found['account_activity']} <br><br>
+EOD;
+ 
+        //Send Mail 
+        $client = $_SESSION['email'];
+        $subject = $withdrawal ." Transfer Successful";
+		
+//Send Mail 
+		$headers = "From:  $domainname <$customer_care_email>" . "\r\n";  
+		$headers .= "BCC:  $domainname <$developer>" . "\r\n";  
+		$headers .= "BCC:  $domainname <$customer_care_email>" . "\r\n";   
+		$headers .= "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";	
+		mail($client,$subject,$body,$headers); 	
+	*/
+		
+    	echo "<meta http-equiv='refresh' content='5;url=transfer_status.php?ref=$_GET[ref]&status={$found['account_activity']}' /> "; 		
+		
+?>
+  
+			          
+			          
+<!-- <meta http-equiv="refresh" content="30;url=transfer-declined.php?ref=<?php echo $_GET['ref']; ?>" />	
+<meta http-equiv="refresh" content="35;url=transfer-declined.php" />	-->
+
+<div class="container">
+<div class="block block-condensed">
+<div class="app-heading app-heading-small">
+<div class="title">
+
+<?php //echo $msg ;
+ ?>
+<h5>
+Transfering to <?php echo $trans_preview['acc_bankname']; ?> 
+- Account Name: <?php echo $trans_preview['acc_name']; ?> (#<?php echo $trans_preview['acc_num']; ?>) </h5>
+<p> </p></div></div>
+
+
+<button class="btn btn-success" onclick="app.loading(&#39;show&#39;,{value: [0,98], speed: 300,state: &#39;success&#39;})">Please wait while your transaction is processing. </button> 
+
+<!-- 
+
+<button class="btn btn-success" onload="app.loading(&#39;show&#39;,{value: [0,98], speed: 300,state: &#39;success&#39;})">Please wait while your transaction is processing. </button> 
+
+
+<div class="block-content">
+<button class="btn btn-default" onclick="app.loading(&#39;show&#39;,{value: [0,30],speed: 10})">Default [0%-30%]</button> 
+<button class="btn btn-primary" onclick="app.loading(&#39;show&#39;,{value: [0,90],speed: 100, state: &#39;primary&#39;})">Primary [0%-40%]</button> 
+
+<button class="btn btn-warning" onclick="app.loading(&#39;show&#39;,{value: [0,60],speed: 10,state: &#39;warning&#39;})">Warning [0%-60%]</button> 
+<button class="btn btn-info" onclick="app.loading(&#39;show&#39;,{value: [0,70],position: &#39;bottom&#39;,speed: 10,state: &#39;info&#39;})">Info [0%-70%]</button> 
+
+<button class="btn btn-danger" onclick="app.loading(&#39;show&#39;,{value: [0,90],speed: 10,state: &#39;danger&#39;})">Danger [0%-90%]</button></div>
+ 
+<div class="app-heading app-heading-small">
+<div class="title">
+<h5>Actions</h5>
+<p>Use predefined options: <code>show, update, destroy</code>.</p></div></div>
+
+<div class="block-content margin-bottom-30"><button class="btn btn-default" onclick="app.loading(&#39;show&#39;,{value: [0,30],speed: 10})">Show [0%-30%]</button> <button class="btn btn-default" onclick="app.loading(&#39;update&#39;,{value: [50,80],speed: 10})">Update [30-80%]</button> <button class="btn btn-default" onclick="app.loading(&#39;destroy&#39;)">Destroy</button></div>
+
+<div class="block-content margin-bottom-30">
+<div class="row">
+<div class="col-md-6"><div class="app-heading app-heading-small app-heading-condensed-horizontal"><div class="title"><h5>Position</h5><p>Use option <code>position</code> with value <code>bottom</code> to use place progress bar in bottom.</p></div></div><button class="btn btn-default" onclick="app.loading(&#39;show&#39;,{value: [0,75],position: &#39;bottom&#39;, state: &#39;danger&#39;,speed: 5})">Bottom [0%-75%]</button></div>
+
+<div class="col-md-6"><div class="app-heading app-heading-small app-heading-condensed-horizontal"><div class="title"><h5>Speed</h5><p>Use option <code>speed</code> with value (int) value to get another speed.</p></div></div><button class="btn btn-default" onclick="app.loading(&#39;show&#39;,{value: [0,80],speed: 5})">Speed 5 [0%-80%]</button> <button class="btn btn-default" onclick="app.loading(&#39;show&#39;,{value: [0,80],speed: 10})">Speed 10 [0%-80%]</button> <button class="btn btn-default" onclick="app.loading(&#39;show&#39;,{value: [0,80],speed: 20})">Speed 20 [0%-80%]</button> <button class="btn btn-default" onclick="app.loading(&#39;show&#39;,{value: [0,80],speed: 30})">Speed 30 [0%-80%]</button></div></div></div></div></div>
+ 
+-->
+</div> 
+</div> 
+
+<!-- END APP CONTENT --></div><!-- END APP CONTAINER -->
+
+
+<!-- START APP FOOTER -->
+<!-- START APP FOOTER -->
+	
+<div class="app-footer app-footer-default" id="footer">
+	<div class="app-footer-line">
+	<div class="copyright"> ©2023 <span class="bname"></span> All right reserved.</div>
+	<div class="pull-right">
+	<ul class="list-inline">
+	<li><a href="#">Proudly powered by:</a></li>
+	<li><a href="#"><span class="bname"></span></a></li> 
+	</ul> 
+	</div></div></div>
+	<!-- END APP FOOTER -->
+	
+	<!-- START APP SIDEPANEL -->
+	<div class="app-sidepanel scroll mCustomScrollbar _mCS_3 mCS-autoHide" data-overlay="show" style="height: 608px;"><div id="mCSB_3" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;">
+	<div id="mCSB_3_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+	<div class="container">
+	<div class="app-heading app-heading-condensed app-heading-small padding-left-0">
+	<div class="icon icon-lg"><span class="icon-alarm"></span></div>
+	<div class="title">
+	<h2>Notifications</h2>
+	<p><strong>7 new</strong>, latest: <?php echo date("d-F-Y H:i:s ", time()); ?>. </p></div></div>
+	 
+		 
+	</div>
+	
+	<div class="row margin-bottom-30">
+	<div class="col-xs-6 col-xs-offset-3">
+	<button class="btn btn-default btn-block">All Notification</button></div></div>
+	
+	<div class="app-heading app-heading-condensed app-heading-small margin-bottom-20 padding-left-0">
+	<div class="icon icon-lg">
+	<span class="icon-cog"></span></div>
+	
+	<div class="title">
+	<h2>Settings</h2>
+	<p>Notification Settings</p></div></div>
+	<div class="form-group"><div class="row"><div class="col-xs-2"><label class="switch switch-sm margin-0"><input type="checkbox" name="app_settings_1" checked="" value="0"><span></span></label></div><div class="col-xs-10"><label>Delivery Information</label></div></div></div>
+	
+	<div class="form-group"><div class="row"><div class="col-xs-2"><label class="switch switch-sm margin-0"><input type="checkbox" name="app_settings_2" checked="" value="0"><span></span></label></div><div class="col-xs-10"><label>Product Amount Information</label></div></div></div>
+	
+	<div class="form-group"><div class="row"><div class="col-xs-2"><label class="switch switch-sm margin-0"><input type="checkbox" name="app_settings_3" checked="" value="0"><span></span></label></div><div class="col-xs-10"><label>Order Information</label></div></div></div>
+	
+	<div class="form-group"><div class="row"><div class="col-xs-2"><label class="switch switch-sm margin-0"><input type="checkbox" name="app_settings_4" checked="" value="0"><span></span></label></div><div class="col-xs-10"><label>Server Load</label></div></div></div>
+	
+	<div class="form-group"><div class="row"><div class="col-xs-2"><label class="switch switch-sm margin-0"><input type="checkbox" name="app_settings_5" value="0"><span></span></label></div><div class="col-xs-10"><label>User Registrations</label></div></div></div>
+	
+	<div class="form-group"><div class="row"><div class="col-xs-2"><label class="switch switch-sm margin-0"><input type="checkbox" name="app_settings_6" value="0"><span></span></label></div><div class="col-xs-10"><label>Purchase Information</label></div></div></div>
+	
+	</div></div>
+	
+	<div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;">
+	<div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 336px; max-height: 598px; top: 0px;">
+	<div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+	<!-- END APP SIDEPANEL -->
+	<!-- APP OVERLAY --><div class="app-overlay"></div>
+	<!-- END APP OVERLAY --></div>
+	
+	<!-- END APP WRAPPER -->
+	<div class="modal fade" id="modal-thanks" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-sm" role="document">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<span aria-hidden="true" class="icon-cross"></span></button>
+	<div class="modal-content">
+	<div class="modal-body">
+	<p class="text-center margin-bottom-20">
+	<img src="images/smile.png" alt="Thank you" style="width: 100px"></p>
+	<h3 id="modal-thanks-heading" class="text-uppercase text-bold text-lg heading-line-below heading-line-below-short text-center"></h3>
+	<p class="text-muted text-center margin-bottom-10">MSME Current Account</p>
+	<p class="text-muted text-center">The MSME Current Account is an SME transactional account designed to meet the needs of micro, small and medium enterprises, including sole traders and partnerships.</p>
+	<p class="text-center"><button class="btn btn-success btn-clean" data-dismiss="modal">Continue</button></p></div>
+	</div></div></div>
+
+<!-- IMPORTANT SCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"  ></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+
+<!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+<script type="text/javascript" src="js/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+<!-- END IMPORTANT SCRIPTS --><!-- THIS PAGE SCRIPTS -->
+<!-- <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap-world-mill-en.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap-us-aea-en.js"></script> -->
+<!-- <script type="text/javascript" src="js/d3.v3.js"></script> -->
+<!-- <script type="text/javascript" src="js/rickshaw.min.js"></script> -->
+<!-- END THIS PAGE SCRIPTS --><!-- APP SCRIPTS -->
+<script type="text/javascript" src="js/app.js"></script>
+<!-- <script type="text/javascript" src="js/app_plugins.js"></script> -->
+<!-- <script type="text/javascript" src="js/app_demo111.js"></script> -->
+<!-- END APP SCRIPTS -->
+<!-- <script type="text/javascript" src="js/app_demo_dashboard.js"></script> -->
+<script type="text/javascript">$(function(){
+				$(".block-refresh-example").on("click",function(){
+					var block = $(this).data("block");
+					app.block.loading.start("#"+block);
+					setTimeout(function(){
+						app.block.loading.finish("#"+block);
+					},3000);
+				});
+			});</script>
+			
+ 
+<div class="jvectormap-tip"></div>
+ 
+<script src="../../assets/js/pilot.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+ 
+</body></html> 
+ 
+	
+	 

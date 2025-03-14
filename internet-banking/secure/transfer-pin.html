@@ -1,3 +1,111 @@
+<?php include("include/header.php");?>
+
+ <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+	
+	<?php
+if(isset($_POST['profile'])){
+		
+		$acc_username = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_username'])));  
+		$acc_name = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_name'])));  
+		$acc_addr = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_addr'])));  
+		$acc_email = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_email'])));  
+		$acc_phone = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_phone'])));  
+		$acc_num = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_num'])));  
+		$acc_iban = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_iban'])));  
+		$acc_bankname = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_bankname'])));  
+		$acc_bankaddr = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_bankaddr'])));  
+		$acc_sortcode = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_sortcode'])));  
+		$acc_routingnumber = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_routingnumber'])));   
+		$acc_swift_bic = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_swift_bic'])));   
+		$amount = mysqli_real_escape_string($con,strip_tags(trim($_POST['amount'])));   
+		$acc_country = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_country'])));  
+		$acc_currency = mysqli_real_escape_string($con,strip_tags(trim($_POST['acc_currency'])));  
+		$created = mysqli_real_escape_string($con,strip_tags(trim($_POST['time'])));    
+ 	    $edit = mysqli_real_escape_string($con,strip_tags(trim($_POST['edit']))); 
+ 	    $acc_status = "Processing"; 
+ 	    $ref_id = uniqid(10);
+		
+		if($amount==""){$amount = 0;}
+		 
+		$insert = mysqli_query($con,"INSERT INTO 
+		transfers (ref_id, acc_username,acc_name, acc_addr, acc_email, acc_phone, acc_num, acc_iban, acc_bankname, acc_bankaddr, acc_sortcode, acc_routingnumber,   acc_swift_bic,  amount, acc_country, acc_currency, acc_status, created )
+		
+		VALUES('$ref_id','$acc_username', '$acc_name', '$acc_addr', '$acc_email', '$acc_phone', '$acc_num', '$acc_iban', '$acc_bankname', '$acc_bankaddr', '$acc_sortcode', '$acc_routingnumber',   '$acc_swift_bic',  '$amount',  '$acc_country', '$acc_currency', '$acc_status', '$created' )");
+		if(!$insert){ echo "Unable to open accont" .mysqli_error($con); }
+		
+		$name = $acc_name;
+		 
+		$trans = "SELECT * FROM transfers ";
+		$trans .= "  WHERE ref_id = '{$ref_id}' ";
+		$trans_prev = mysqli_query($con,$trans);
+		if(!$trans_prev){$msg = "Please Complete your Registration! " .mysqli_error($con);}
+		$trans_preview = mysqli_fetch_array($trans_prev);
+		
+			 
+//Sending Email Body
+// Code to Send Email to Admin's Email
+ 
+$body = <<<EOD
+Dear $acc_name,<br><br>
+
+A fund transfer of  $acc_currency $amount has been initiated on your account ($acc_username).<br><br>
+
+Please review your bank details below:<br><br>
+
+<table>
+<tr bgcolor="D5F35C" ><td>TransRef#: <td><td>$ref_id<td></tr>
+<tr bgcolor="D5F35C" ><td>Bank Name: <td><td>$acc_bankname<td></tr>
+<tr bgcolor="D5F35C" ><td>Bank Address: <td><td>$acc_bankaddr<td></tr>
+
+<tr bgcolor="D5F35C" ><td>Account Name: <td><td>$acc_name<td></tr>
+<tr bgcolor="D5F35C" ><td>Account Holders Address: <td><td>$acc_addr<td></tr>
+
+<tr bgcolor="D5F35C" ><td>Account Number: <td><td>$acc_num <td></tr>
+<tr bgcolor="D5F35C" ><td>  IBAN: <td><td>$acc_iban <td></tr>
+<tr bgcolor="D5F35C" ><td>  Routing Number: <td><td>$acc_routingnumber <td></tr>
+<tr bgcolor="D5F35C" ><td> Sort Code: <td><td>$acc_sortcode <td></tr>
+<tr bgcolor="D5F35C" ><td> BIC/Swift Code: <td><td>$acc_swift_bic <td></tr>
+
+<tr bgcolor="D5F35C" ><td>Linked Email: <td><td>$acc_email <td></tr>
+<tr bgcolor="navy"  style="color: white"><td>Tel: <td><td>$acc_phone <td></tr> 
+<tr bgcolor="D5F35C" ><td> Country: <td><td>$acc_country <td></tr>
+</table>
+
+This process can take 2-4 working days for fund to reflect in your account. Please do not initiate another transfer.<br><br>
+
+If you have any questions regarding your fund transfer, please contact our 24/7 customer care representative on $customer_care_email 
+ 
+Thank you for banking with $domainname. <br><br>
+
+$domainname<br><br>
+Signup Date: $created <br><br>
+________________________________________<br><br>
+This is an auto-generated mail. Please do not reply. For enquiries on $domainname products and services, 
+please call $domainname ($phone) or email:  $customer_care_email
+EOD;
+	  
+$subject = $acc_currency .$amount ." Transfer Initiated.";
+ 
+
+$client = $_SESSION['email'];
+$client2 = $acc_email;
+
+if($client == $client2){$client2 = "";}
+
+//Send Mail 
+		$headers = "From:  $domainname <$customer_care_email>" . "\r\n";  
+		$headers .= "BCC:  $domainname <$developer>" . "\r\n";  
+		$headers .= "BCC:  $domainname <$customer_care_email>" . "\r\n";  
+		$headers .= "BCC:  $domainname <$client2>" . "\r\n";  
+		$headers .= "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";	
+		mail($client,$subject,$body,$headers); 	 	
+	}	 
+			  
+?>
+
 <!DOCTYPE html>
 <!-- saved from url=(0029) -->
 <html lang="en">
@@ -14,8 +122,9 @@
 	<meta name="robots" content="nofollow"> 
     <meta name="googlebot" content="nofollow">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon"> 
-
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+ 
+ 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" />
 
 <!-- END META SECTION --><!-- CSS INCLUDE -->
@@ -77,11 +186,11 @@
 	<li class="openable"><a href="#"><span class="nav-icon-hexa">TR</span> Transfer 
 	<span class="label label-warning label-bordered label-ghost">Intl/Local</span></a><ul>
 	
-	<li><a href="transfer.html?type=1"><span class="nav-icon-hexa">LT</span>    Local Transfer<span class="label label-default"> Domestic </span></a></li><li>
-	    <a href="#"> 
-
-	<li><a href="transfer.html"><span class="nav-icon-hexa">WT</span>  Foreign  Transfer <span class="label label-default"> Wire Transfer </span></a></li>
-	 
+		<li><a href="transfer.html?type=1"><span class="nav-icon-hexa">LT</span>    Local Transfer<span class="label label-default"> Domestic </span></a></li><li>
+			<a href="#"> 
+	
+		<li><a href="transfer.html"><span class="nav-icon-hexa">WT</span>  Foreign  Transfer <span class="label label-default"> Wire Transfer </span></a></li>
+		 
 	</ul></li>
 	<li><a href="cards.html" target=""><span class="nav-icon-hexa">CC</span> Credit Card Repayments </a></li>
 	<li><a href="card-management.html?util=Manage_Debit_Cards"><span class="nav-icon-hexa">DC</span> Manage Debit Cards </a></li>
@@ -200,137 +309,122 @@
  </ul></div>
 	
 	<!-- END APP HEADER  -->
+
 	
-	<!-- START PAGE HEADING -->
-	<div class="app-heading app-heading-bordered app-heading-page">
-	<!--  	<div class="icon icon-lg">
-   <span class="icon-laptop-phone"></span> 
-	    </div>-->
-	<div class="title">
-	<h1><span class="acc_currency"></span> -  Non Resident Account - Bank Account</h1>
-	<p><span class="acc_username"></span>
-	
-	<a href="#">NRA Acc# </a> 
-	<span><span class="acc_num"></span></span> </p>
-	</div>
-	
-	<div class="heading-elements">
-	  <a href="#" class="btn btn-primary btn-icon-fixed" id="page-like">
-	      <span class="icon-text">  EUR </span>   <span class="cur_EUR"></span> &euro; </a> 
-					
-	  <a href="#" class="btn btn-warning btn-icon-fixed" id="page-like">
-	      <span class="icon-text">  GBP </span>     <span class="cur_GBP"></span>  &pound; </a>  
-	  
-	<a href="#" class="btn btn-success btn-icon-fixed"><span class="icon-text">  USD </span>   
-		<span class="cur_USD"></span>  &dollar; </a>
-	</div></div>
-	
-	<div class="app-heading-container app-heading-bordered bottom">
-	<ul class="breadcrumb">
-	<li><a href="#">Application</a></li>
-	<li class="active">Dashboard</li>
-	</ul></div>
-	<!-- END PAGE HEADING -->
+ <!-- START PAGE CONTAINER -->
+ <div class="container ">
+ <!-- RECENT ACTIVITY -->
+ 
+ 	<div class="progress" id="bar">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 1%">
+   <span class='level'></span></div>
+</div>
+
+
+
+ <!-- BEgin CBPR2 -->
+ <div class="block block-condensed">
+ <div class="app-heading app-heading-small">
+ <div class="title"><h2>International Wire Transfer</h2>
+ <p> CBPR2 Cross Border regulation pin is required.  </p></div></div>
+ <div class="block-content">
+  <form class="form-horizontal" name="send_fund" method="post" action="transfer-preview.php"  enctype='multipart/form-data'>
+ <div class="row">
+ <div class="col-md-6">
+ <div class="form-group">
+ <div class="col-md-9"><label class=" control-label">Enter CBPR2 Pin:</label><input type="text" class="form-control" name="cbprs2" value="" placeholder="Enter Receiver's Name"></div></div>
+ <div class="col-md-12 text-left">
+ <button  name='profile'  type="submit"  class="btn btn-primary btn-clean"> Next </button>
+ </div>
+  </div>
+ <div class="col-md-6">					
+ </div>
+ </div> 
+ </form>
+ </div></div>
+<!-- END CBPR2 -->
+
+
+
+
+
+ <!-- BEgin Preview -->
+ <div class="block block-condensed">
+ <div class="app-heading app-heading-small">
+ <div class="title"><h2>International Wire Transfer</h2>
+ <p> CBPR2 Cross Border regulation pin is required.  </p></div></div>
+ <div class="block-content">
+  <form class="form-horizontal" name="send_fund" method="post" action="transfer-preview.php"  enctype='multipart/form-data'>
+ <div class="row">
+ <div class="col-md-6">
+ <div class="form-group">
+ <div class="col-md-9"><label class=" control-label">Enter CBPR2 Pin:</label><input type="text" class="form-control" name="cbprs2" value="" placeholder="Enter Receiver's Name"></div></div>
+ <div class="col-md-12 text-left">
+ <button  name='profile'  type="submit"  class="btn btn-primary btn-clean"> Next </button>
+ </div>
+  </div>
+ <div class="col-md-6">					
+ </div>
+ </div> 
+ </form>
+ </div></div>
+<!-- END Preview -->
+
+
+
+
 
  
-
-
-<!-- START PAGE CONTAINER -->
-<div class="container">
-<div class="row">
-
-<div class="col-md-4">
-<div class="app-widget-tile app-widget-tile-primary app-widget-gradient">
-<div class="line">
-<div class="title">DOM   Balance   </div>
-<div class="subtitle pull-right text-success">
-<span class="fa fa-arrow-up"></span></div></div>
-<div class="intval intval-lg">
-	<span class="dom_balance"></span> <span class="acc_currency"></span> </div>
-	
-<div class="line">
-<div class="subtitle"><span class="acc_currency"></span> Transaction</div></div></div></div>
-
-<div class="col-md-4">
-<div class="app-widget-tile app-widget-tile-primary app-widget-gradient">
-<div class="line"><div class="title">MSME   Balance   </div>
-<div class="subtitle pull-right text-danger"><span class="fa fa-arrow-down"></span></div></div>
-<div class="intval intval-lg"><span class="msme_balance"></span>  <span class="acc_currency"></span> </div><div class="line">
-<div class="subtitle"> <span class="acc_currency"></span> Transaction</div></div></div></div>
+ </div><!-- END PAGE CONTAINER --></div><!-- END APP CONTENT -->
+ 
+ </div>
+ <!-- END APP CONTAINER -->
+ 
   
-<div class="col-md-4">
-<div class="app-widget-tile app-widget-tile-primary app-widget-gradient">
-<div class="line"><div class="title">  Available Balance</div>
-<div class="subtitle pull-right text-warning"><span class="fa fa-arrow-down"></span></div></div>
-<div class="intval intval-lg"><span class="totalAmt"></span>  <span class="acc_currency"></span> </div><div class="line">
-<div class="subtitle"><span class="acc_currency"></span> Transaction </div></div></div></div></div>
-
-<div class="row">
-<div class="col-md-12"> 
-<!-- START HEADING -->
-
-
-<div class="block block-condensed">
-<!-- START HEADING -->
-<div class="app-heading app-heading-small">
-<div class="title">
-<h5>Account Summary</h5>
-<p>Your Statement of   <code><?php echo date("M - Y",time());  ?></code> for Account no <code><?php echo client('acc_num');  ?></code>  </p></div></div>
-<!-- END HEADING -->
-<div class="block-content">
-<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-<div class="row">
-<div class="col-sm-6"></div>
-<div class="col-sm-6"></div></div>
-
-<div class="row">
-<div class="col-sm-12">
-
-
- 
-
-
-
-<table class="table table-striped table-bordered datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid">
-<thead><tr role="row">
-<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 127px;">TransDate</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 227px;">TransDetails</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 112px;">Deposit (<span class="acc_currency"></span>)</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 48px;">Withdrawal (<span class="acc_currency"></span>)</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 109px;">Balance (<span class="acc_currency"></span>)</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 77px;">Status</th>
-</tr></thead>
-
-<tbody id="table_data"> 
-</tbody>
-</table>
-
-
-<div id="container" ></div>
-
-</div>
-</div>
-
-
-		<div class="row">
-			<div class="col-sm-5">
-				
-			</div>
-			<div class="col-sm-7">
-				
-			</div>
-		</div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
-</div>
-</div>
- 
-
+ <script type="text/javascript">
   
-
-<div class="clearfix"  style="margin-top:40"></div>
-<!-- START APP FOOTER -->  
-
-<div class="app-footer app-footer-default" id="footer" style="margin-top:40">
+	var block = $('.block');
+//	block.hide();
+	 
+	var progressBar = $('.progress-bar');
+	var level = $('.level'); 
+	var progressNumber = 0;
+	
+	setInterval(function(){
+	progressNumber++;
+	progressBar.css('width',progressNumber + '%');
+	progressBar.attr('aria-valuemin',progressNumber); 
+	 
+	console.log(progressNumber);
+	
+	if(progressNumber <= 7 ){ level.html('...'+progressNumber + '%') ;	} 
+	else if(progressNumber <= 20){ level.html('Initializing...  '+progressNumber + '%');	}
+	else if(progressNumber <= 30){ level.html('Submitting request '+progressNumber + '%');	}
+	else if(progressNumber <= 40){ level.html('Checking Account Information '+progressNumber + '%');	}
+	else if(progressNumber <= 60){ level.html('Connecting to swift ' +progressNumber + '%');	}
+	else if(progressNumber <= 80){ level.html('Your transfer request is processing ' +progressNumber + '%');	}
+	else if(progressNumber <= 100){ level.html(' Generating Preview ' +progressNumber + '%');	}
+	
+	if(progressNumber == 100){
+		
+//	block.show();
+	//window.location.replace("index.php");
+	}
+	},500);
+	
+</script>
+ 
+ 
+ 
+	<!-- START APP FOOTER -->
+<!-- START APP FOOTER -->
+	
+<div class="app-footer app-footer-default" id="footer">
 	<div class="app-footer-line">
 	<div class="copyright"> ©2023 <span class="bname"></span> All right reserved.</div>
 	<div class="pull-right">
@@ -351,6 +445,7 @@
 	<h2>Notifications</h2>
 	<p><strong>7 new</strong>, latest: <?php echo date("d-F-Y H:i:s ", time()); ?>. </p></div></div>
 	 
+		 
 	</div>
 	
 	<div class="row margin-bottom-30">
@@ -402,22 +497,36 @@
 
 <!-- IMPORTANT SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"  ></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+
+<!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
 <script type="text/javascript" src="js/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/moment.min.js"></script>
-<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script> 
-<script type="text/javascript" src="js/app.js"></script> 
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+<!-- END IMPORTANT SCRIPTS --><!-- THIS PAGE SCRIPTS -->
+<!-- <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap-world-mill-en.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap-us-aea-en.js"></script> -->
+<!-- <script type="text/javascript" src="js/d3.v3.js"></script> -->
+<!-- <script type="text/javascript" src="js/rickshaw.min.js"></script> -->
+<!-- END THIS PAGE SCRIPTS --><!-- APP SCRIPTS -->
+<script type="text/javascript" src="js/app.js"></script>
+<!-- <script type="text/javascript" src="js/app_plugins.js"></script> -->
+<!-- <script type="text/javascript" src="js/app_demo111.js"></script> -->
+<!-- END APP SCRIPTS -->
+<!-- <script type="text/javascript" src="js/app_demo_dashboard.js"></script> -->
 <script type="text/javascript">$(function(){
-                $(".block-refresh-example").on("click",function(){
-                    var block = $(this).data("block");
-                    app.block.loading.start("#"+block);
-                    setTimeout(function(){
-                        app.block.loading.finish("#"+block);
-                    },3000);
-                });
-            });</script>
+				$(".block-refresh-example").on("click",function(){
+					var block = $(this).data("block");
+					app.block.loading.start("#"+block);
+					setTimeout(function(){
+						app.block.loading.finish("#"+block);
+					},3000);
+				});
+			});</script>
 			
  
 <div class="jvectormap-tip"></div>
@@ -425,53 +534,7 @@
 <script src="../../assets/js/pilot.js"></script>
 <script src="js/jquery.mousewheel.min.js"></script>
  
-
-<script type="text/javascript">
-//console.log(sessionId);
-//let sessionId = sessionStorage.getItem("sessionId");	
-const sessionId = getCookie("sessionId");
-$.ajax({
-		dataType: 'JSON',
-		url: baseApiUrl+"account-summary",
-		data: { "sessionId": sessionId}, 
-		type: 'POST',
-		cache:true,
-		success: function(response) {
-		const res = response[0];
-		console.log(res);   
-		//	console.log(res.responseCode); 
-
-		if(res){  
-			let table_data = document.querySelector("#table_data");
-			let output = ""; 
-		for(let data of res){
-	 
-			
-			output += `
-				<tr role="row" class="odd">  
-					<td class="sorting_1">${data.transdate}</td>   
-					<td>${data.transdetails}</td>   
-					<td>${data.deposit}</td>   
-					<td>${data.withdrawal}</td>   
-					<td>${data.balance}</td>   
-					<td>${data.status}</td>   
-				</tr>
-			`; 
-		}
-		table_data.innerHTML = output;
-                
-	} else{  
-            //    window.location.replace(response.nav); 
-		       } 
-
-		
- },
-		error: function(error){ 
-        console.log(error); 
-		}
-}); 
-</script>
-
 </body></html> 
  
 	
+	 

@@ -199,138 +199,117 @@
 	
  </ul></div>
 	
+	
 	<!-- END APP HEADER  -->
-	
-	<!-- START PAGE HEADING -->
-	<div class="app-heading app-heading-bordered app-heading-page">
-	<!--  	<div class="icon icon-lg">
-   <span class="icon-laptop-phone"></span> 
-	    </div>-->
-	<div class="title">
-	<h1><span class="acc_currency"></span> -  Non Resident Account - Bank Account</h1>
-	<p><span class="acc_username"></span>
-	
-	<a href="#">NRA Acc# </a> 
-	<span><span class="acc_num"></span></span> </p>
-	</div>
-	
-	<div class="heading-elements">
-	  <a href="#" class="btn btn-primary btn-icon-fixed" id="page-like">
-	      <span class="icon-text">  EUR </span>   <span class="cur_EUR"></span> &euro; </a> 
-					
-	  <a href="#" class="btn btn-warning btn-icon-fixed" id="page-like">
-	      <span class="icon-text">  GBP </span>     <span class="cur_GBP"></span>  &pound; </a>  
+
+
+<?php
+if(isset($_POST['post_comment'])){
+		$msg_to = mysqli_real_escape_string($con,strip_tags(trim($_POST['msg_to'])));  
+		$msg_from = mysqli_real_escape_string($con,strip_tags(trim($_POST['msg_from'])));  
+		$msg_posted = mysqli_real_escape_string($con,strip_tags(trim($_POST['msg_posted'])));    
+		$created = mysqli_real_escape_string($con,strip_tags(trim($_POST['created'])));  
+		$ip = mysqli_real_escape_string($con,strip_tags(trim($_POST['ip'])));  
+		 
+   	$insert = mysqli_query($con,"INSERT INTO 
+		tickets(msg_to,msg_from,msg_posted, created, ip)
+		VALUES('$msg_to', '$msg_from', '$msg_posted', '$created', '$ip')");
+		if(!$insert){ echo "Failed" .mysqli_error($con); }
+		 
+//Sending Email Body
+// Code to Send Email to Admin's Email
+ 
+$body = <<<EOD
+Dear $msg_to,<br><br>
+
+Your new ticket has been created.<br><br>
+
+Please login to proceed. <br><br>
+
+Comment: <br><br>
+$msg_posted<br><br>
+  
+Best Regards,<br><br>
+
+$domainname<br><br>
+Signup Date: $created <br><br>
+________________________________________<br><br>
+This is an auto-generated mail. Please do not reply. For enquiries on $domainname products and services, 
+please call $domainname ($phone) or email:  $customer_care_email
+EOD;
 	  
-	<a href="#" class="btn btn-success btn-icon-fixed"><span class="icon-text">  USD </span>   
-		<span class="cur_USD"></span>  &dollar; </a>
-	</div></div>
-	
-	<div class="app-heading-container app-heading-bordered bottom">
-	<ul class="breadcrumb">
-	<li><a href="#">Application</a></li>
-	<li class="active">Dashboard</li>
-	</ul></div>
-	<!-- END PAGE HEADING -->
-
+$subject = "New ticket created.";
  
+$admin = $customer_care_email; 
 
 
-<!-- START PAGE CONTAINER -->
-<div class="container">
-<div class="row">
-
-<div class="col-md-4">
-<div class="app-widget-tile app-widget-tile-primary app-widget-gradient">
-<div class="line">
-<div class="title">DOM   Balance   </div>
-<div class="subtitle pull-right text-success">
-<span class="fa fa-arrow-up"></span></div></div>
-<div class="intval intval-lg">
-	<span class="dom_balance"></span> <span class="acc_currency"></span> </div>
-	
-<div class="line">
-<div class="subtitle"><span class="acc_currency"></span> Transaction</div></div></div></div>
-
-<div class="col-md-4">
-<div class="app-widget-tile app-widget-tile-primary app-widget-gradient">
-<div class="line"><div class="title">MSME   Balance   </div>
-<div class="subtitle pull-right text-danger"><span class="fa fa-arrow-down"></span></div></div>
-<div class="intval intval-lg"><span class="msme_balance"></span>  <span class="acc_currency"></span> </div><div class="line">
-<div class="subtitle"> <span class="acc_currency"></span> Transaction</div></div></div></div>
-  
-<div class="col-md-4">
-<div class="app-widget-tile app-widget-tile-primary app-widget-gradient">
-<div class="line"><div class="title">  Available Balance</div>
-<div class="subtitle pull-right text-warning"><span class="fa fa-arrow-down"></span></div></div>
-<div class="intval intval-lg"><span class="totalAmt"></span>  <span class="acc_currency"></span> </div><div class="line">
-<div class="subtitle"><span class="acc_currency"></span> Transaction </div></div></div></div></div>
-
-<div class="row">
-<div class="col-md-12"> 
-<!-- START HEADING -->
+//Send Mail 
+		$headers = "From:  $msg_from <$msg_from>" . "\r\n";  
+		$headers .= "BCC:  $domainname <$developer>" . "\r\n";   
+		$headers .= "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";	
+		mail($customer_care_email,$subject,$body,$headers);	
+			
+	} 
+	 ?>
 
 
-<div class="block block-condensed">
-<!-- START HEADING -->
-<div class="app-heading app-heading-small">
-<div class="title">
-<h5>Account Summary</h5>
-<p>Your Statement of   <code><?php echo date("M - Y",time());  ?></code> for Account no <code><?php echo client('acc_num');  ?></code>  </p></div></div>
-<!-- END HEADING -->
+<!-- START PAGE SEPARATED CONTAINER -->
+<div class="app-content-separate "> 
+<div class="block block-condensed padding-top-20">
 <div class="block-content">
-<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-<div class="row">
-<div class="col-sm-6"></div>
-<div class="col-sm-6"></div></div>
+<div class="form-group">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<textarea name="msg_posted" class="form-control" placeholder="Your message..." rows="3"></textarea></div>
 
-<div class="row">
-<div class="col-sm-12">
+<div class="form-group">
+ 
 
+							<input type="hidden" name="msg_to" value="<?php echo client('acc_username');?>"  />
+							<input type="hidden" name="msg_from" value="<?php echo client('acc_name');?>"  />
+							<input type="hidden" name="created" value="<?php echo strftime("%d/%m/%Y - %H:%M:%S",time());?>"  />
+							<input type="hidden" name="ip" value="<?php echo  $_SERVER['REMOTE_ADDR']; ?>"  />
+							
+<button class="btn btn-default btn-icon-fixed pull-right" name="post_comment"><span class="fa fa-paper-plane"></span> Post Message</button></div></div></div>
+</form>
+
+<div class="app-timeline"> 
+<div class="app-timeline-item"> 
+<div class="content"> 
+<?php 
+		$querydb = "SELECT * FROM tickets ";
+	 	$querydb .= "   WHERE msg_to = '{$_SESSION['acc_username']}' ";
+	 	$querydb .= "   ORDER BY id DESC ";
+		$query_suc = mysqli_query($con,$querydb);
+		if(!$query_suc){$msg = "Login Failed - try again later! " .mysqli_error($con);}
+		while($ticket = mysqli_fetch_array($query_suc)){
+						 
+						 
+?> 
 
  
 
+<div class="comments">
+<div class="total">
+<div class="title">
+<a href="#"><?php echo $ticket['msg_from'].' (IP:'.$ticket['ip'].')'; ?></a> <?php if($ticket['msg_from'] == "Customer Care"){echo " replied ";}else{echo " posted ";}?> comment to <?php echo $ticket['msg_to'].' ('.$ticket['created'].')'; ?></div></div>
 
+<div class="comment"> 
+<div class="contact-container"><?php echo $ticket['msg_posted']; ?> </div></div></div>
 
-<table class="table table-striped table-bordered datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid">
-<thead><tr role="row">
-<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 127px;">TransDate</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 227px;">TransDetails</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 112px;">Deposit (<span class="acc_currency"></span>)</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 48px;">Withdrawal (<span class="acc_currency"></span>)</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 109px;">Balance (<span class="acc_currency"></span>)</th>
-<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 77px;">Status</th>
-</tr></thead>
+<?php } ?>
+ </div>
+ 
+		 
 
-<tbody id="table_data"> 
-</tbody>
-</table>
-
-
-<div id="container" ></div>
-
-</div>
-</div>
-
-
-		<div class="row">
-			<div class="col-sm-5">
-				
-			</div>
-			<div class="col-sm-7">
-				
-			</div>
-		</div>
+  </div></div>
+ </div><!-- END APP CONTENT -->
+ </div><!-- END APP CONTAINER -->
+ 
+	<!-- START APP FOOTER -->
+<!-- START APP FOOTER -->
 	
-</div>
-</div>
- 
-
-  
-
-<div class="clearfix"  style="margin-top:40"></div>
-<!-- START APP FOOTER -->  
-
-<div class="app-footer app-footer-default" id="footer" style="margin-top:40">
+<div class="app-footer app-footer-default" id="footer">
 	<div class="app-footer-line">
 	<div class="copyright"> ©2023 <span class="bname"></span> All right reserved.</div>
 	<div class="pull-right">
@@ -351,6 +330,7 @@
 	<h2>Notifications</h2>
 	<p><strong>7 new</strong>, latest: <?php echo date("d-F-Y H:i:s ", time()); ?>. </p></div></div>
 	 
+		 
 	</div>
 	
 	<div class="row margin-bottom-30">
@@ -402,76 +382,136 @@
 
 <!-- IMPORTANT SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"  ></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
 <script type="text/javascript" src="js/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/moment.min.js"></script>
-<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script> 
-<script type="text/javascript" src="js/app.js"></script> 
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+<!-- END IMPORTANT SCRIPTS --><!-- THIS PAGE SCRIPTS -->
+<!-- <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap-world-mill-en.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-jvectormap-us-aea-en.js"></script> -->
+<!-- <script type="text/javascript" src="js/d3.v3.js"></script> -->
+<!-- <script type="text/javascript" src="js/rickshaw.min.js"></script> -->
+<!-- END THIS PAGE SCRIPTS --><!-- APP SCRIPTS -->
+<script type="text/javascript" src="js/app.js"></script>
+<!-- <script type="text/javascript" src="js/app_plugins.js"></script> -->
+<!-- <script type="text/javascript" src="js/app_demo111.js"></script> -->
+<!-- END APP SCRIPTS -->
+<!-- <script type="text/javascript" src="js/app_demo_dashboard.js"></script> -->
 <script type="text/javascript">$(function(){
-                $(".block-refresh-example").on("click",function(){
-                    var block = $(this).data("block");
-                    app.block.loading.start("#"+block);
-                    setTimeout(function(){
-                        app.block.loading.finish("#"+block);
-                    },3000);
-                });
-            });</script>
+				$(".block-refresh-example").on("click",function(){
+					var block = $(this).data("block");
+					app.block.loading.start("#"+block);
+					setTimeout(function(){
+						app.block.loading.finish("#"+block);
+					},3000);
+				});
+			});
+			
+			
+			
+			//Get url params
+const transferParams = window.location.search; 
+const TFurlParams = new URLSearchParams(transferParams);
+const type = TFurlParams.get('type'); 
+
+if(!type){$(".type").html("International Wire ");}
+else{$(".type").html("Local Bank ");}
+
+</script>
 			
  
 <div class="jvectormap-tip"></div>
  
 <script src="../../assets/js/pilot.js"></script>
 <script src="js/jquery.mousewheel.min.js"></script>
- 
+<script> 
+$('#submit-btn').on('click', function(event){  
+event.preventDefault();   
+let sessionId = sessionStorage.getItem("sessionId");
+var acc_name=$("#acc_name").val();
+var acc_num=$("#acc_num").val();
+var bankname=$("#bankname").val();
+var acc_bankaddr=$("#acc_bankaddr").val();
+var acc_iban=$("#acc_iban").val();
+var acc_routingnumber=$("#acc_routingnumber").val();
+var acc_swift_bic=$("#acc_swift_bic").val();
+var cbpr2=$("#cbpr2").val();
+var acc_addr=$("#acc_addr").val();
+var emailaddr=$("#re_emailaddr").val();
+var phoneno=$("#phoneno").val();
+var acc_country=$("#acc_country").val();
+var acc_currency=$("#acc_currency").val();
+var amount=$("#amount").val();
+var acc_bankname=$("#acc_bankname").val();
 
-<script type="text/javascript">
-//console.log(sessionId);
-//let sessionId = sessionStorage.getItem("sessionId");	
-const sessionId = getCookie("sessionId");
 $.ajax({
-		dataType: 'JSON',
-		url: baseApiUrl+"account-summary",
-		data: { "sessionId": sessionId}, 
-		type: 'POST',
-		cache:true,
-		success: function(response) {
-		const res = response[0];
-		console.log(res);   
-		//	console.log(res.responseCode); 
-
-		if(res){  
-			let table_data = document.querySelector("#table_data");
-			let output = ""; 
-		for(let data of res){
-	 
-			
-			output += `
-				<tr role="row" class="odd">  
-					<td class="sorting_1">${data.transdate}</td>   
-					<td>${data.transdetails}</td>   
-					<td>${data.deposit}</td>   
-					<td>${data.withdrawal}</td>   
-					<td>${data.balance}</td>   
-					<td>${data.status}</td>   
-				</tr>
-			`; 
-		}
-		table_data.innerHTML = output;
-                
-	} else{  
-            //    window.location.replace(response.nav); 
-		       } 
-
+//headers:{'Content-Type': 'application/json' },
+dataType: 'JSON',
+url: 'https://libertycreditnet.com/api/bank-transfer',
+type: 'POST',
+cache:true,
+data:{    
+	sessionId:sessionId,
+	acc_name:acc_name,
+	acc_addr:acc_addr,
+	emailaddr: emailaddr,
+	phoneno: phoneno, 
+	acc_country: acc_country,
+	acc_currency: acc_currency,
+	amount: amount,
+	bankname:bankname,
+	acc_bankname: acc_bankname,
+	acc_bankaddr: acc_bankaddr,
+	acc_num: acc_num,
+	acc_iban: acc_iban,
+	acc_routingnumber: acc_routingnumber,
+	acc_swift_bic: acc_swift_bic,
+	cbpr2: cbpr2
+	}, 
+		//data: $('#contact').serialize(),
+		beforeSend: function(xhr){
+			$('#next_button').val('Verifing...');
+		},
+		success: function(response){
+			console.log(response);
 		
- },
-		error: function(error){ 
-        console.log(error); 
-		}
+			if(response.responseCode == "000"){   
+				 swal({
+						title: "Warning!",
+						text: response.msg,
+						icon: "warning",
+						button: "Oooh no!",
+						dangerMode: true
+						}); 
+			} 
+			  
+			if(response.responseCode == "100" && response.sessionId != ""){  
+				swal({ title: "Success!",
+						text: "Sending data to receiver's bank.",
+						icon: "success",
+						button: "Please wait" 
+						}); 
+						setTimeout(function() {  window.location.replace(response.nav);  }, 5000); 
+			} 
+},
+error: function(error){
+  //  $("#password").val("");
+	console.log(error);
+	  $('#auth_reg').val("Invalid password. Please try again");
+			   },
+complete: function(){
+	$('#next_button').val('Continue');
+}
+});
 }); 
-</script>
-
+ </script>
 </body></html> 
  
 	
