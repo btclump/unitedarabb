@@ -6347,6 +6347,7 @@ body .install-app-container {
 <!-- <script src="assets/js/wow.min.js"></script>
 <script src="assets/js/form-validator.min.js"></script>
 <script src="assets/js/contact-form-script.js"></script> -->
+  <script src="assets/js/pilot.js"></script>  
 <script src="assets/js/main.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -6530,7 +6531,7 @@ if (!password) {
 $.ajax({
 //headers:{'Content-Type': 'application/json' },
 dataType: 'JSON',
-url: 'https://api.indoramaventures.org/login-account',
+url:  baseApiUrl+"login-account",
 type: 'POST',
 cache:true,
 data:{
