@@ -124,6 +124,10 @@ document.addEventListener('DOMContentLoaded', () => { // ensures the DOM is full
 		totalAmt = totalAmt.toLocaleString() ;
 		$(".totalAmt").html(totalAmt);  
 
+		if(response.account.acc_currency == "AED"){ $(".cur_GBP").html(totalAmt); }
+			else{ $(".cur_GBP").html("0.00");}
+
+			
 		if(response.account.acc_currency == "GBP"){ $(".cur_GBP").html(totalAmt); }
 			else{ $(".cur_GBP").html("0.00");}
 			 
